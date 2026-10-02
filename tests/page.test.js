@@ -96,17 +96,17 @@ test("self-hosts Big Shoulders Display and does not call Google Fonts", () => {
 
 test("ships responsive fleet variants and prioritizes the hero image", () => {
   const hero = html.match(/<img\b[^>]*data-hero-img[^>]*>/)?.[0] ?? "";
-  const fleet = html.match(/<img\b[^>]*data-fleet-img[^>]*>/)?.[0] ?? "";
+  const heroPicture = html.match(/<picture>[\s\S]*?data-hero-img[\s\S]*?<\/picture>/)?.[0] ?? "";
   assert.match(hero, /fetchpriority="high"/);
   assert.doesNotMatch(hero, /loading="lazy"/);
-  assert.match(fleet, /loading="lazy"/);
+  assert.doesNotMatch(html, /data-fleet-img|class="fleet-break"/);
   assert.match(hero, /width="4032"/);
   assert.match(hero, /height="3024"/);
-  const urls = [...html.matchAll(/srcset="([^"]+)"/g)].flatMap((match) =>
+  const urls = [...heroPicture.matchAll(/srcset="([^"]+)"/g)].flatMap((match) =>
     match[1].split(",").map((part) => part.trim().split(/\s+/)[0])
   );
-  assert.ok(urls.some((url) => url.endsWith(".avif")));
-  assert.ok(urls.some((url) => url.endsWith(".webp")));
+  assert.ok(urls.some((url) => url.includes("assets/fleet/") && url.endsWith(".avif")));
+  assert.ok(urls.some((url) => url.includes("assets/fleet/") && url.endsWith(".webp")));
   const original = statSync(resolve(root, "assets/austin-air-fleet.jpeg")).size;
   for (const url of urls) {
     const file = resolve(root, url);
@@ -163,17 +163,19 @@ test("carries the louder v2 sections and the expanded palette", () => {
   assert.match(html, /id="spine"/);
   assert.match(html, /Fast\.[\s\S]*?Efficient\.[\s\S]*?Precise\./);
   assert.match(html, /id="phases"/);
-  assert.match(html, /Four phases\.[\s\S]*?One crew\./);
-  assert.match(html, />Slab</);
-  assert.match(html, />Frame</);
-  assert.match(html, />Set</);
-  assert.match(html, />Start</);
+  assert.match(html, /Three phases\.[\s\S]*?One crew\./);
+  assert.match(html, />Rough-in</);
+  assert.match(html, />Trim-out</);
+  assert.match(html, />Final</);
+  assert.doesNotMatch(html, />Slab<|>Frame<|>Set<|>Start</);
   assert.match(html, /id="why"/);
   assert.match(html, /The last crew treated the schedule like a suggestion\./);
   assert.match(html, /id="get"/);
   assert.match(html, /A partner who already knows the sequence\./);
   assert.match(html, /id="faq"/);
   assert.match(html, /Ask it straight\./);
+  assert.match(html, /mechanical sub <span class="cta-keep">catches up\.<\/span>/);
+  assert.match(css, /\.cta-keep\s*\{[^}]*white-space:\s*nowrap/);
   assert.match(html, /Construction photography: Unsplash \(credits\)/);
   assert.match(html, /href="credits\.html"/);
   assert.doesNotMatch(html, /Not an Austin Air project/);
@@ -199,15 +201,30 @@ test("every img and source path referenced in the page exists", () => {
   }
   assert.ok(paths.size > 10);
   for (const url of paths) assert.ok(existsSync(resolve(root, url)), `missing image ${url}`);
+  for (const gone of ["slab", "start", "house"]) {
+    for (const name of [`${gone}.jpg`, `${gone}-1280.avif`, `${gone}-1280.webp`, `${gone}-2400.avif`, `${gone}-2400.webp`]) {
+      assert.equal(existsSync(resolve(root, "assets/phases", name)), false, `leftover ${name}`);
+    }
+  }
+  assert.ok(existsSync(resolve(root, "assets/phases/frame.jpg")));
+  assert.ok(existsSync(resolve(root, "assets/austin-air-fleet.jpeg")));
 });
 
 test("phase copy is plain text in one color", () => {
   const phases = html.match(/<section class="phases"[\s\S]*?<\/section>/)?.[0] ?? "";
-  assert.match(phases, /mechanical path/);
-  assert.match(phases, /rough-in/);
+  assert.match(phases, /Ductwork, lineset, condensate drains, and control wire\. Run before insulation and drywall\./);
+  assert.match(phases, /Equipment is set\. Registers, grilles, thermostat, and the final connections\. After drywall and paint\./);
+  assert.match(phases, /Start-up\. Checks\. An inspection-ready handoff\./);
+  assert.match(phases, /assets\/phases\/frame\.jpg/);
+  assert.doesNotMatch(phases, /assets\/phases\/(?:slab|start|house)/);
   assert.doesNotMatch(phases, /<(?:mark|em|strong|span|b|i)\b/i);
   assert.match(css, /\.phase-copy p\s*\{[^}]*color:\s*inherit/);
-  assert.match(css, /\.phase-list li:nth-child\(3\) \.phase-copy p\s*\{[^}]*color:\s*var\(--paper\)/);
+  assert.doesNotMatch(css, /\.phase-copy p\s*\{[^}]*color:\s*var\(--paper\)/);
+  assert.match(css, /\.phase-trim\s*\{[^}]*background:\s*var\(--amber\)/);
+  assert.match(css, /\.phase-final\s*\{[^}]*background:\s*var\(--signal\)/);
+  assert.match(css, /\.marquee\s*\{[^}]*background:\s*var\(--navy\)/);
+  assert.match(css, /\.marquee\s*\{[^}]*color:\s*var\(--paper\)/);
+  assert.match(css, /\.marquee span\s*\{[^}]*-webkit-text-stroke:\s*0\.02em var\(--amber\)/);
   assert.match(css, /\.phases-intro p,\s*\.phase-copy p,[\s\S]*?transform:\s*translateZ\(0\)/);
   assert.match(css, /\.faq summary\s*\{[^}]*display:\s*list-item/);
   assert.doesNotMatch(css, /\.faq summary\s*\{[^}]*display:\s*flex/);

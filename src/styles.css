@@ -427,42 +427,6 @@ body.nav-open .site-header .site-nav a { color: var(--navy); }
   transform: translateY(0);
 }
 
-.fleet-break {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  height: 84vh;
-  height: 84svh;
-  min-height: 70vh;
-  overflow: hidden;
-  color: var(--paper);
-  background: var(--navy);
-}
-.fleet-media { position: absolute; inset: 0; overflow: hidden; }
-.fleet-media img {
-  position: absolute;
-  left: -4%;
-  top: -4%;
-  width: 108%;
-  height: 108%;
-  max-width: none;
-  object-fit: cover;
-  object-position: 48% 76%;
-  transform-origin: center center;
-}
-.fleet-scrim {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(to top, rgba(12, 16, 32, 0.86) 0%, rgba(12, 16, 32, 0.28) 40%, rgba(12, 16, 32, 0.14) 100%);
-}
-.fleet-copy {
-  position: relative;
-  z-index: 2;
-  padding: 0 clamp(1.1rem, 5vw, 5.5rem) clamp(2rem, 7vh, 4.5rem);
-}
-.fleet-copy h2 { font-size: clamp(3.6rem, 13vw, 9rem); }
-
 .process {
   padding: clamp(4.5rem, 12vh, 8.5rem) clamp(1.1rem, 5vw, 5.5rem);
   background: var(--signal);
@@ -687,9 +651,9 @@ html.motion .territory.is-in .axis-line {
   position: relative;
   z-index: 2;
   overflow: hidden;
-  background: var(--signal);
-  color: var(--navy);
-  border-bottom: 0.55rem solid var(--navy);
+  background: var(--navy);
+  color: var(--paper);
+  border-bottom: 0.55rem solid var(--amber);
 }
 .marquee-track {
   display: flex;
@@ -710,7 +674,7 @@ html.motion .territory.is-in .axis-line {
   display: inline-block;
   margin: 0 0.16em;
   color: transparent;
-  -webkit-text-stroke: 0.02em var(--navy);
+  -webkit-text-stroke: 0.02em var(--amber);
 }
 
 .stamp {
@@ -828,8 +792,6 @@ html.motion .territory.is-in .axis-line {
   height: clamp(18rem, 62vw, 46rem);
   object-fit: cover;
 }
-.phase-list li:first-child img { object-position: center 45%; }
-.phase-list li:nth-child(4) img { object-position: center 55%; }
 .phase-band {
   display: grid;
   grid-template-columns: auto minmax(0, 40rem);
@@ -839,32 +801,49 @@ html.motion .territory.is-in .axis-line {
   background: var(--sand);
   color: var(--navy);
 }
-.phase-list li:nth-child(2) .phase-band { background: var(--amber); }
-.phase-list li:nth-child(3) .phase-band { background: var(--navy); color: var(--paper); }
-.phase-set {
+.phase-graphic {
   position: relative;
+  grid-template-rows: auto minmax(0, 1fr);
   min-height: clamp(22rem, 46vw, 36rem);
   align-items: end;
   padding-bottom: clamp(2.4rem, 6vh, 4rem);
   overflow: hidden;
 }
 .phase-air {
-  position: absolute;
-  top: 16%;
-  left: 0;
-  width: 100%;
-  height: clamp(4.5rem, 12vw, 8rem);
-  color: var(--amber);
+  position: relative;
+  grid-column: 1 / -1;
+  grid-row: 1;
+  align-self: start;
+  display: block;
+  width: calc(100% + 2 * clamp(1.1rem, 5vw, 5.5rem));
+  max-width: none;
+  height: clamp(4.5rem, 11vw, 7.5rem);
+  margin: 1rem calc(-1 * clamp(1.1rem, 5vw, 5.5rem)) 0;
   pointer-events: none;
 }
-.phase-set .phase-num {
+.phase-trim { background: var(--amber); color: var(--navy); }
+.phase-trim .phase-air {
+  height: clamp(4rem, 9vw, 6.5rem);
+  color: var(--navy);
+}
+.phase-final { background: var(--signal); color: var(--navy); }
+.phase-final .phase-air {
+  height: clamp(5.25rem, 13vw, 8.75rem);
+  color: var(--navy);
+}
+.phase-graphic .phase-num {
   position: relative;
+  grid-column: 1;
+  grid-row: 2;
   font-size: clamp(8rem, 18vw, 16rem);
   line-height: 0.92;
   -webkit-text-stroke-width: 2px;
 }
-.phase-set .phase-copy { position: relative; }
-.phase-list li:nth-child(4) .phase-band { background: var(--signal); color: var(--navy); }
+.phase-graphic .phase-copy {
+  position: relative;
+  grid-column: 2;
+  grid-row: 2;
+}
 .phase-num {
   margin: 0;
   font-family: var(--display);
@@ -875,7 +854,6 @@ html.motion .territory.is-in .axis-line {
   color: transparent;
   -webkit-text-stroke: 1.5px var(--navy);
 }
-.phase-list li:nth-child(3) .phase-num { -webkit-text-stroke-color: var(--sand); }
 .phase-copy h3 { font-size: clamp(2.6rem, 4.4vw, 4.2rem); }
 .phase-copy p {
   max-width: 36ch;
@@ -884,7 +862,6 @@ html.motion .territory.is-in .axis-line {
   font-size: 1.05rem;
   line-height: 1.55;
 }
-.phase-list li:nth-child(3) .phase-copy p { color: var(--paper); }
 /* Small type on navy picks up amber and blue from LCD subpixel fringes. */
 .phases-intro p,
 .phase-copy p,
@@ -898,13 +875,6 @@ html.motion .territory.is-in .axis-line {
   -moz-osx-font-smoothing: grayscale;
   transform: translateZ(0);
 }
-.get-photo img {
-  display: block;
-  width: 100%;
-  height: clamp(16rem, 42vw, 32rem);
-  object-fit: cover;
-}
-
 .cta-band {
   display: flex;
   flex-wrap: wrap;
@@ -924,6 +894,7 @@ html.motion .territory.is-in .axis-line {
   line-height: 0.95;
   text-transform: uppercase;
 }
+.cta-keep { white-space: nowrap; }
 .cta-signal {
   background: var(--navy);
   border-color: var(--navy);
@@ -981,7 +952,7 @@ html.motion .territory.is-in .axis-line {
 
 .get {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.9fr) minmax(14rem, 0.85fr);
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: clamp(1.4rem, 4vw, 3rem);
   align-items: end;
   padding: clamp(4rem, 10vh, 7rem) clamp(1.1rem, 5vw, 5.5rem);
@@ -1013,9 +984,6 @@ html.motion .territory.is-in .axis-line {
   text-decoration-color: var(--signal);
   text-underline-offset: 0.16em;
 }
-.get-photo { margin: 0; }
-.get figcaption { color: var(--steel); }
-
 .faq {
   padding: clamp(4rem, 10vh, 7rem) clamp(1.1rem, 5vw, 5.5rem) clamp(3rem, 7vh, 4.5rem);
   background: var(--paper);
@@ -1088,10 +1056,10 @@ html.motion .territory.is-in .axis-line {
   .spine-grid li { min-height: 0; }
   .phase-band { grid-template-columns: 1fr; gap: 0.2rem; }
   .phase-num { font-size: clamp(4.4rem, 24vw, 7rem); }
-  .phase-set { min-height: clamp(18rem, 78vw, 24rem); }
-  .phase-set .phase-num { font-size: clamp(6.5rem, 36vw, 9rem); }
+  .phase-graphic { min-height: clamp(18rem, 78vw, 24rem); row-gap: 1.15rem; }
+  .phase-graphic .phase-num { grid-column: 1; grid-row: 2; font-size: clamp(6.5rem, 36vw, 9rem); }
+  .phase-graphic .phase-copy { grid-column: 1; grid-row: 3; }
   .phase-list img { height: clamp(16rem, 78vw, 24rem); }
-  .get-photo img { height: 18rem; }
   .get {
     grid-template-columns: 1fr;
     align-items: start;
@@ -1265,7 +1233,6 @@ html.motion .territory.is-in .axis-line {
     width: 112%;
     object-position: 58% 64%;
   }
-  .fleet-media img { object-position: 56% 72%; }
 }
 
 @media (max-width: 420px) {
@@ -1287,7 +1254,6 @@ html.motion .territory.is-in .axis-line {
   }
   .hero { position: relative; }
   .hero-media img,
-  .fleet-media img,
   .hero-copy,
   html.motion .timeline::before,
   html.motion .axis-line {
