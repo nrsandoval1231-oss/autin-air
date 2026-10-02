@@ -76,6 +76,24 @@ test("retains both service cities and regular-weight typography", () => {
   assert.doesNotMatch(css, /scroll-behavior:\s*smooth/);
 });
 
+test("self-hosts Big Shoulders Display and does not call Google Fonts", () => {
+  const woff = resolve(root, "assets/fonts/big-shoulders-display-latin.woff2");
+  const ofl = resolve(root, "assets/fonts/BigShoulders-OFL.txt");
+  assert.ok(existsSync(woff), "missing Big Shoulders woff2");
+  assert.ok(statSync(woff).size > 1000);
+  assert.ok(existsSync(ofl), "missing Big Shoulders OFL");
+  assert.match(readFileSync(ofl, "utf8"), /SIL OPEN FONT LICENSE/);
+  assert.match(html, /assets\/fonts\/big-shoulders-display-latin\.woff2/);
+  assert.match(css, /font-family:\s*"Big Shoulders Display"/);
+  assert.match(css, /big-shoulders-display-latin\.woff2/);
+  assert.match(css, /font-display:\s*swap/);
+  assert.doesNotMatch(html, /fonts\.googleapis|fonts\.gstatic/i);
+  assert.doesNotMatch(css, /fonts\.googleapis|fonts\.gstatic/i);
+  assert.doesNotMatch(html, /instrument-serif/i);
+  assert.doesNotMatch(css, /instrument-serif|Instrument Serif/i);
+  assert.ok(!existsSync(resolve(root, "assets/fonts/instrument-serif-latin.woff2")));
+});
+
 test("ships responsive fleet variants and prioritizes the hero image", () => {
   const hero = html.match(/<img\b[^>]*data-hero-img[^>]*>/)?.[0] ?? "";
   const fleet = html.match(/<img\b[^>]*data-fleet-img[^>]*>/)?.[0] ?? "";
@@ -212,7 +230,7 @@ test("visible copy has no digits beyond verified facts and phase labels", () => 
   let stripped = visible;
   for (const token of allowed) stripped = stripped.split(token).join(" ");
   assert.doesNotMatch(stripped, /\d/, `unexpected digit in visible copy: ${stripped.match(/\d+/g)}`);
-  assert.match(html, /#1 in new-construction HVAC across Odessa &amp; Midland\./);
+  assert.match(html, /#1 in <span class="claim-keep">new-construction HVAC<\/span> across Odessa &amp; Midland\./);
   assert.match(html, /On time, without fail, 7\+ years running\./);
   assert.doesNotMatch(html, /best in the country/i);
   assert.doesNotMatch(html, /2015/);
