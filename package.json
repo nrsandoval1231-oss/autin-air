@@ -4,6 +4,8 @@
   "type": "module",
   "scripts": {
     "test": "node --test",
-    "check": "node --check src/form.js && node --check src/site.js"
+    "check": "node --check src/form.js && node --check src/site.js && node --check scripts/build-dist.mjs && node --check scripts/require-deploy-env.mjs",
+    "build:dev": "node scripts/build-dist.mjs",
+    "deploy:dev": "node scripts/require-deploy-env.mjs && npm run build:dev && npx wrangler pages deploy dist --project-name austin-air-dev --branch main"
   }
 }
