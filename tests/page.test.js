@@ -190,8 +190,16 @@ test("visible copy has no digits beyond verified facts and phase labels", () => 
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
     .replace(/<style[\s\S]*?<\/style>/gi, " ")
     .replace(/<[^>]+>/g, " ");
-  const allowed = ["+14326141927", "432", "614", "1927", "6820", "79762", "8am", "5pm", "01", "02", "03", "04"];
+  // #1 and 7+ are the only extra digits, and only inside owner-published
+  // phrases confirmed on https://www.theaustinair.com/ :
+  // "#1 Residential New Construction HVAC in Odessa & Midland."
+  // "on time without fail for over 7 years."
+  const allowed = ["+14326141927", "432", "614", "1927", "6820", "79762", "8am", "5pm", "01", "02", "03", "04", "#1", "7+"];
   let stripped = visible;
   for (const token of allowed) stripped = stripped.split(token).join(" ");
   assert.doesNotMatch(stripped, /\d/, `unexpected digit in visible copy: ${stripped.match(/\d+/g)}`);
+  assert.match(html, /#1 in new-construction HVAC across Odessa &amp; Midland\./);
+  assert.match(html, /On time, without fail, 7\+ years running\./);
+  assert.doesNotMatch(html, /best in the country/i);
+  assert.doesNotMatch(html, /2015/);
 });

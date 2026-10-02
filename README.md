@@ -37,4 +37,6 @@ The original logo and fleet photograph are in `assets/`, with sources in `assets
 
 ## Deploy
 
-Not configured. The site is static HTML, CSS, JavaScript, and images. If a host is added later, use Cloudflare. Do not add Vercel or GitHub Actions. Set the canonical URL and absolute social-image URLs only after the production URL is confirmed.
+The production domain is theaustinair.com, currently hosted on GoHighLevel. This repo does not change DNS or hosting. Canonical and Open Graph URLs can switch to https://www.theaustinair.com/ once Nick confirms a cutover. Until then, leave them unset. If a host is added later, use Cloudflare. Do not add Vercel or GitHub Actions.
+
+The GoHighLevel page’s other pictures (a condenser pair, a tools flat-lay) are not used here. The fleet photograph and the logo remain the company imagery.
