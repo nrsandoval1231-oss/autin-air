@@ -55,19 +55,19 @@ export function initServiceRequestForm(form, { destination = "", fetch: send = g
   const originalDisabled = button.disabled;
   const originalNoValidate = form.noValidate;
   form.noValidate = true;
-  let phase = endpoint ? "ready" : "unavailable";
+  let mode = endpoint ? "ready" : "unavailable";
   let disposed = false;
   const update = (next, text) => {
-    phase = next;
+    mode = next;
     status.textContent = text;
     status.dataset.state = next;
     button.disabled = next !== "ready";
   };
-  update(phase, endpoint ? "" : "Online service requests are unavailable until a delivery destination is configured. Please call us for service.");
+  update(mode, endpoint ? "" : "Online service requests are unavailable until a delivery destination is configured. Please call us for service.");
 
   async function onSubmit(event) {
     event.preventDefault();
-    if (disposed || phase !== "ready") return;
+    if (disposed || mode !== "ready") return;
     const values = Object.fromEntries(fieldNames.map(name => [name, fields[name].value.trim()]));
     const invalid = validateServiceRequest(values);
     for (const name of fieldNames) {
