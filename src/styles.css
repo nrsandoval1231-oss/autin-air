@@ -189,8 +189,8 @@ body.nav-open .site-header .site-nav a { color: var(--navy); }
 }
 .kicker {
   margin-bottom: 1.1rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
+  font-size: 0.875rem;
+  letter-spacing: 0.16em;
   line-height: 1.5;
   text-transform: uppercase;
 }
@@ -294,10 +294,10 @@ body.nav-open .site-header .site-nav a { color: var(--navy); }
   z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  min-height: 100vh;
-  min-height: 100svh;
-  padding: clamp(6rem, 16vh, 10rem) clamp(1.1rem, 5vw, 5.5rem) clamp(3.5rem, 10vh, 6.5rem);
+  justify-content: flex-start;
+  min-height: 64vh;
+  min-height: 64svh;
+  padding: calc(var(--header-h) + clamp(1rem, 3vh, 2rem)) clamp(1.1rem, 5vw, 5.5rem) clamp(3.25rem, 8vh, 5.5rem);
   border-top: 2px solid var(--red);
   background: var(--paper);
 }
@@ -461,7 +461,7 @@ html.motion .timeline.is-in::before {
   display: block;
   margin-bottom: 0.85rem;
   color: var(--red);
-  font-size: 0.78rem;
+  font-size: 0.875rem;
   letter-spacing: 0.14em;
 }
 .timeline h3 {
@@ -505,8 +505,8 @@ html.motion .timeline.is-in::before {
   align-items: center;
   width: min(100%, 28rem);
   margin-top: 1.75rem;
-  font-size: 0.74rem;
-  letter-spacing: 0.18em;
+  font-size: 0.875rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 .axis-line {
@@ -544,6 +544,7 @@ html.motion .territory.is-in .axis-line {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
+  min-height: 48px;
   margin-top: clamp(1.4rem, 4vh, 2.6rem);
   color: var(--paper);
   font-size: clamp(2.2rem, 6vw, 4.4rem);
@@ -561,13 +562,16 @@ html.motion .territory.is-in .axis-line {
   margin-top: 1.4rem;
 }
 .contact-lines a {
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  min-height: 48px;
+  width: min(100%, 42rem);
+  min-height: 56px;
   border-bottom: 1px solid transparent;
   color: var(--paper);
-  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
-  letter-spacing: 0.08em;
+  font-size: clamp(1.35rem, 2.4vw, 2.15rem);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -583,7 +587,7 @@ html.motion .territory.is-in .axis-line {
   padding-top: 1.25rem;
   border-top: 1px solid rgba(243, 239, 230, 0.18);
   color: var(--mist);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   line-height: 1.6;
 }
 
@@ -719,6 +723,38 @@ html.motion .territory.is-in .axis-line {
     width: 100%;
     padding-right: 1rem;
     padding-left: 1rem;
+  }
+  .lede,
+  .positioning p,
+  .index-detail,
+  .timeline p,
+  .territory-line {
+    font-size: 1.0625rem;
+  }
+  .contact {
+    padding-top: calc(var(--header-h) + 1.5rem);
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+  .contact h2 {
+    font-size: clamp(3.8rem, 20.4vw, 6.4rem);
+    letter-spacing: -0.045em;
+  }
+  .contact-lines { width: 100%; gap: 0.2rem; }
+  .contact-lines a {
+    width: 100%;
+    min-height: 56px;
+    padding: 0.5rem 0;
+    font-size: clamp(1.85rem, 8.2vw, 2.55rem);
+    letter-spacing: 0.015em;
+  }
+  .contact-lines a.contact-mail {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    row-gap: 0.12rem;
+    font-size: clamp(1.5rem, 8vw, 2.15rem);
+    letter-spacing: 0;
   }
   .hero-copy h1 {
     font-size: clamp(4.6rem, 24.8vw, 7.4rem);
