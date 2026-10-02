@@ -787,6 +787,7 @@ html.motion .territory.is-in .axis-line {
   position: relative;
   min-height: clamp(22rem, 46vw, 36rem);
   align-items: end;
+  padding-bottom: clamp(2.4rem, 6vh, 4rem);
   overflow: hidden;
 }
 .phase-air {
@@ -801,6 +802,7 @@ html.motion .territory.is-in .axis-line {
 .phase-set .phase-num {
   position: relative;
   font-size: clamp(8rem, 18vw, 16rem);
+  line-height: 0.86;
   -webkit-text-stroke-width: 3px;
 }
 .phase-set .phase-copy { position: relative; }
