@@ -126,3 +126,40 @@ test("states the published capabilities, process, and west texas line", () => {
   assert.match(html, /Local knowledge\. Builder coordination\. HVAC execution\./);
   assert.match(html, /Let's talk\./);
 });
+
+test("carries the louder v2 sections and the expanded palette", () => {
+  assert.match(html, /id="spine"/);
+  assert.match(html, /Fast\.[\s\S]*?Affordable\.[\s\S]*?Precise\./);
+  assert.match(html, /id="phases"/);
+  assert.match(html, /Four phases\.[\s\S]*?One crew\./);
+  assert.match(html, />Slab</);
+  assert.match(html, />Frame</);
+  assert.match(html, />Set</);
+  assert.match(html, />Start</);
+  assert.match(html, /id="why"/);
+  assert.match(html, /The last crew treated the schedule like a suggestion\./);
+  assert.match(html, /id="get"/);
+  assert.match(html, /A partner who already knows the sequence\./);
+  assert.match(html, /id="faq"/);
+  assert.match(html, /Ask it straight\./);
+  assert.match(html, /They are not Austin Air jobs\./);
+  assert.match(html, /Not an Austin Air project\./);
+  assert.match(html, /href="#faq"/);
+  assert.match(css, /--amber:\s*#e07a2f/);
+  assert.match(css, /--sand:\s*#e6d3b0/);
+  assert.match(css, /--signal:\s*#ff4d2e/);
+  assert.match(css, /@keyframes ticker/);
+  assert.match(css, /prefers-reduced-motion: reduce\)[\s\S]*\.marquee-track/);
+});
+
+test("visible copy has no digits beyond verified facts and phase labels", () => {
+  const visible = html
+    .replace(/<!--[\s\S]*?-->/g, " ")
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ");
+  const allowed = ["+14326141927", "432", "614", "1927", "6820", "79762", "8am", "5pm", "01", "02", "03", "04"];
+  let stripped = visible;
+  for (const token of allowed) stripped = stripped.split(token).join(" ");
+  assert.doesNotMatch(stripped, /\d/, `unexpected digit in visible copy: ${stripped.match(/\d+/g)}`);
+});

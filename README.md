@@ -4,7 +4,7 @@ Static website for The Austin Air Company, a residential new-construction HVAC c
 
 ## Architecture
 
-One page: `index.html`, `src/styles.css`, and `src/site.js`. No framework and no build step. `src/site.js` handles the header, the mobile menu, and a few scroll transitions.
+One page: `index.html`, `src/styles.css`, and `src/site.js`. No framework and no build step. `src/site.js` handles the header, the mobile menu, and a few scroll transitions. The page adds a Fast / Affordable / Precise spine, a four-phase build story, why builders switch, what you get, repeated calls to action, and a builder FAQ.
 
 `src/form.js` validates a service-request form and can post JSON to a delivery endpoint. It is not mounted. No endpoint has been confirmed, so the page does not show a form.
 
@@ -33,7 +33,7 @@ Check the page in a browser at 1440, 1280, 768, 430, 390, 375, and 320. Confirm 
 
 ## Assets
 
-The original logo and fleet photograph are in `assets/`, with sources in `assets/SOURCES.md`. Those files are unchanged. AVIF and WebP variants are generated from the fleet photograph. Display type is Instrument Serif and interface type is Monda, both self-hosted.
+The original logo and fleet photograph are in `assets/`, with sources in `assets/SOURCES.md`. Those files are unchanged. AVIF and WebP variants are generated from the fleet photograph. Construction-phase pictures in `assets/phases/` are Unsplash photographs, credited in `assets/SOURCES.md`, and are not Austin Air jobs. Display type is Instrument Serif and interface type is Monda, both self-hosted.
 
 ## Deploy
 

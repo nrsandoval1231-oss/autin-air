@@ -15,3 +15,15 @@ Derived files, made from those originals without redrawing or recoloring:
 - `assets/logo/logo-*.webp`: resized copies of `austin-air-logo.png`. The PNG in the header `src` is still the original file.
 - `assets/favicon.png` and `assets/apple-touch-icon.png`: the original logo scaled uniformly onto a warm-white square. The logo pixels are not recolored.
 - `assets/fonts/`: latin subsets of Instrument Serif and Monda (Open Font License), self-hosted.
+
+## Construction-phase photographs
+
+These are freely licensed stock photographs used to illustrate stages of residential construction. They are not Austin Air jobs, not Austin Air crews, and not Austin Air equipment. The fleet photograph and the logo are the only company imagery.
+
+All five are under the [Unsplash License](https://unsplash.com/license). Files in `assets/phases/` were downloaded and resized locally. The page does not hotlink them.
+
+- Slab (`slab.jpg` and `slab-960` / `slab-1123` AVIF and WebP). Photographer: Troy Allen. Source page: https://unsplash.com/photos/construction-worker-smoothing-wet-concrete-slab-with-tools-GNClKls4ok8. Download: https://images.unsplash.com/photo-1773432114474-c1afba22a339. License: Unsplash License.
+- Frame (`frame.jpg` and `frame-960` / `frame-1600` AVIF and WebP). Photographer: Troy Mortier. Source page: https://unsplash.com/photos/a-house-under-construction-with-wooden-framing-kkdfOe0iRu8. Download: https://images.unsplash.com/photo-1676802037786-3697d60497ae. License: Unsplash License.
+- Set (`set.jpg` and `set-960` / `set-1600` AVIF and WebP). Photographer: alpha innotec. Source page: https://unsplash.com/photos/modern-house-exterior-with-heat-pump-unit-kblddocwPa0. Download: https://images.unsplash.com/photo-1776860155275-eee24bfb1dee. License: Unsplash License. The heat pump in the frame is not an Austin Air equipment line.
+- Start / duct (`duct.jpg` and `duct-960` / `duct-1600` AVIF and WebP). Photographer: Taylor Vick. Source page: https://unsplash.com/photos/close-photography-of-air-vent-qVXFewdVWn4. Download: https://images.unsplash.com/photo-1558358235-a0a93f68a52c. License: Unsplash License.
+- Finished exterior (`house.jpg` and `house-960` / `house-1600` AVIF and WebP). Photographer: Roger Starnes Sr. Source page: https://unsplash.com/photos/a-brick-house-with-a-green-lawn-and-a-blue-sky-ph6qQVK00n0. Download: https://images.unsplash.com/photo-1714177167566-5b447b38f61c. License: Unsplash License.
