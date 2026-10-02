@@ -19,13 +19,10 @@ Derived files, made from those originals without redrawing or recoloring:
 - `assets/fonts/monda-latin.woff2`: latin subset of Monda (Open Font License), self-hosted, used for body text.
 - `assets/fonts/big-shoulders-display-latin.woff2`: latin subset of Big Shoulders Display, the Black instance (weight 900) of the variable font, used for display type. Source: https://github.com/google/fonts/tree/main/ofl/bigshouldersdisplay file `BigShouldersDisplay[wght].ttf`, Version 2.002. Upstream project: https://github.com/xotypeco/big_shoulders. Designer: Patric King. License: SIL Open Font License 1.1, copied at `assets/fonts/BigShoulders-OFL.txt`. No Google Fonts CDN request.
 
-## Construction-phase photographs
+## Construction-phase photograph
 
-These are freely licensed stock photographs used to illustrate stages of residential construction. They are not Austin Air jobs, not Austin Air crews, and not Austin Air equipment. The fleet photograph and the logo are the only company imagery. Full credits are also served at `credits.html`.
+One freely licensed stock photograph illustrates Rough-in. It is not an Austin Air job, not an Austin Air crew, and not Austin Air equipment. The fleet photograph and the logo are the only company imagery. Trim-out and Final are graphics on the page. Full credit is also served at `credits.html`.
 
-The four photographs are under the [Unsplash License](https://unsplash.com/license). Files in `assets/phases/` were downloaded and resized locally (AVIF and WebP at 1280 and 2400, plus a JPEG fallback). The page does not hotlink them. The Set phase is a graphic on the page, not a photograph.
+The photograph is under the [Unsplash License](https://unsplash.com/license). Files in `assets/phases/` were downloaded and resized locally (AVIF and WebP at 1280 and 2400, plus a JPEG fallback). The page does not hotlink them.
 
-- Slab (`slab.jpg` and `slab-1280` / `slab-2400` AVIF and WebP). Photographer: Troy Allen. Source page: https://unsplash.com/photos/construction-worker-smoothing-wet-concrete-slab-with-tools-GNClKls4ok8. Download: https://images.unsplash.com/photo-1773432114474-c1afba22a339. License: Unsplash License. The page file is a wide crop of this photograph, centered on the finisher.
-- Frame (`frame.jpg` and `frame-1280` / `frame-2400` AVIF and WebP). Photographer: Troy Mortier. Source page: https://unsplash.com/photos/a-house-under-construction-with-wooden-framing-kkdfOe0iRu8. Download: https://images.unsplash.com/photo-1676802037786-3697d60497ae. License: Unsplash License.
-- Start (`start.jpg` and `start-1280` / `start-2400` AVIF and WebP). Finished house at dusk. Photographer: Michael Brown. Source page: https://unsplash.com/photos/modern-house-with-large-windows-at-dusk-cUoXTLVFQ9M. Download: https://images.unsplash.com/photo-1757524492552-d47a66a2b63e. License: Unsplash License.
-- Finished exterior (`house.jpg` and `house-1280` / `house-2400` AVIF and WebP). Photographer: Roger Starnes Sr. Source page: https://unsplash.com/photos/a-brick-house-with-a-green-lawn-and-a-blue-sky-ph6qQVK00n0. Download: https://images.unsplash.com/photo-1714177167566-5b447b38f61c. License: Unsplash License.
+- Rough-in (`frame.jpg` and `frame-1280` / `frame-2400` AVIF and WebP). Wood framing, walls open. Photographer: Troy Mortier. Source page: https://unsplash.com/photos/a-house-under-construction-with-wooden-framing-kkdfOe0iRu8. Download: https://images.unsplash.com/photo-1676802037786-3697d60497ae. License: Unsplash License.

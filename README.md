@@ -4,7 +4,7 @@ Static website for The Austin Air Company, a residential new-construction HVAC c
 
 ## Architecture
 
-One page: `index.html`, `src/styles.css`, and `src/site.js`. No framework and no build step. `src/site.js` handles the header, the mobile menu, and a few scroll transitions. The page adds a Fast / Efficient / Precise spine, a section on why the HVAC matters, a four-phase build story, why builders switch, what you get, repeated calls to action, and a builder FAQ.
+One page: `index.html`, `src/styles.css`, and `src/site.js`. No framework and no build step. `src/site.js` handles the header, the mobile menu, and a few scroll transitions. The page adds a Fast / Efficient / Precise spine, a section on why the HVAC matters, a three-phase build story, why builders switch, what you get, repeated calls to action, and a builder FAQ.
 
 `src/form.js` validates a service-request form and can post JSON to a delivery endpoint. It is not mounted. No endpoint has been confirmed, so the page does not show a form.
 
@@ -33,7 +33,7 @@ Check the page in a browser at 1440, 1280, 768, 430, 390, 375, and 320. Confirm 
 
 ## Assets
 
-The original logo and fleet photograph are in `assets/`, with sources in `assets/SOURCES.md`. Those files are unchanged. AVIF and WebP variants are generated from the fleet photograph. Construction-phase pictures in `assets/phases/` are Unsplash photographs, credited in `assets/SOURCES.md` and on `credits.html`, and are not Austin Air jobs. The Set phase has no photograph. Display type is Big Shoulders Display (Patric King, SIL Open Font License 1.1, self-hosted Latin Black) and interface type is Monda, also self-hosted. The Big Shoulders license is `assets/fonts/BigShoulders-OFL.txt`.
+The original logo and fleet photograph are in `assets/`, with sources in `assets/SOURCES.md`. Those files are unchanged. AVIF and WebP variants are generated from the fleet photograph, and the fleet photograph is the hero. One Unsplash photograph, Troy Mortier’s wood framing, illustrates Rough-in. It is credited in `assets/SOURCES.md` and on `credits.html`, and it is not an Austin Air job. Trim-out and Final are graphics. Display type is Big Shoulders Display (Patric King, SIL Open Font License 1.1, self-hosted Latin Black) and interface type is Monda, also self-hosted. The Big Shoulders license is `assets/fonts/BigShoulders-OFL.txt`.
 
 ## Deploy
 
