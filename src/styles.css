@@ -241,6 +241,7 @@ body.nav-open .site-header .site-nav a { color: var(--navy); }
 .territory h2,
 .contact h2,
 .spine h2,
+.matters h2,
 .phases h2,
 .why h2,
 .get h2,
@@ -757,6 +758,33 @@ html.motion .territory.is-in .axis-line {
   font-size: 1.05rem;
   line-height: 1.55;
 }
+
+.matters-lead {
+  padding: clamp(3.2rem, 8vh, 5.5rem) clamp(1.1rem, 5vw, 5.5rem) clamp(2.2rem, 6vh, 4rem);
+  background: var(--navy);
+  color: var(--paper);
+}
+.matters h2 { font-size: clamp(3.1rem, 9vw, 7.6rem); }
+.matters-body {
+  padding: clamp(2rem, 5vh, 3.2rem) clamp(1.1rem, 5vw, 5.5rem) clamp(3.5rem, 8vh, 5.5rem);
+  background: var(--sand);
+  color: var(--navy);
+}
+.matters-body p {
+  max-width: 38ch;
+  margin-top: 1.05rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+.matters-close {
+  max-width: 16em;
+  margin-top: 1.6rem;
+  font-family: var(--display);
+  font-size: clamp(1.55rem, 2.8vw, 2.35rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+.matters .cta { margin-top: 1.5rem; }
 
 .phases {
   padding: clamp(4rem, 10vh, 7rem) 0 0;
