@@ -16,7 +16,8 @@ Derived files, made from those originals without redrawing or recoloring:
 - `assets/logo/logo-alpha-2x.png` and `logo-alpha-3x.png`: the original mark with a clean alpha edge. Partial-alpha fringe pixels were reassigned to the solid navy or red they belong to, so the edge does not carry a white matte. Opaque white pixels in the red bar are the tagline and were kept. These are the header mark on the cream bar.
 - `assets/logo/logo-light-2x.png` and `logo-light-3x.png`: the same alpha mark with navy ink changed to paper (`#f3efe6`). Red and the white tagline are unchanged. These are the header mark over the dark hero. The 2x files are 560 pixels wide and the 3x files are 840, for a slot about 280 CSS pixels wide.
 - `assets/favicon.png` and `assets/apple-touch-icon.png`: the original logo scaled uniformly onto a warm-white square. The logo pixels are not recolored.
-- `assets/fonts/`: latin subsets of Instrument Serif and Monda (Open Font License), self-hosted.
+- `assets/fonts/monda-latin.woff2`: latin subset of Monda (Open Font License), self-hosted, used for body text.
+- `assets/fonts/big-shoulders-display-latin.woff2`: latin subset of Big Shoulders Display, the Black instance (weight 900) of the variable font, used for display type. Source: https://github.com/google/fonts/tree/main/ofl/bigshouldersdisplay file `BigShouldersDisplay[wght].ttf`, Version 2.002. Upstream project: https://github.com/xotypeco/big_shoulders. Designer: Patric King. License: SIL Open Font License 1.1, copied at `assets/fonts/BigShoulders-OFL.txt`. No Google Fonts CDN request.
 
 ## Construction-phase photographs
 
