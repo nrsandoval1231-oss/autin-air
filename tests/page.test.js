@@ -9,11 +9,11 @@ const html = readFileSync(resolve(root, "index.html"), "utf8");
 const css = readFileSync(resolve(root, "src/styles.css"), "utf8");
 const localImagePaths = ["assets/austin-air-logo.png", "assets/austin-air-fleet.jpeg"];
 
-test("page identifies Austin Air and the editorial headline", () => {
+test("page identifies Austin Air and the service headline", () => {
   assert.match(html, /The Austin Air Company/);
-  assert.match(html, /Built for[\s\S]*?the build\./);
-  assert.match(html, /HVAC is one part[\s\S]*?of the build\./);
-  assert.match(html, /Residential HVAC for builders across Odessa and Midland\./);
+  assert.match(html, /Service[\s\S]*?calls\./);
+  assert.match(html, /The system[\s\S]*?you live with\./);
+  assert.match(html, /AC and heating repair, diagnostics, tune-ups, and replacement for existing homes in Odessa and Midland\./);
 });
 
 test("uses the original logo and fleet image paths, both present on disk", () => {
@@ -49,10 +49,12 @@ test("navigation links target existing page sections", () => {
   for (const target of targets) assert.match(html, new RegExp(`\\bid="${target}"`));
   assert.match(html, /href="#main"/);
   assert.match(html, /id="main"/);
-  assert.match(nav, /Capabilities/);
-  assert.match(nav, /Process/);
+  assert.match(nav, /Services/);
+  assert.match(nav, /The call/);
+  assert.match(nav, /Tune-ups/);
   assert.match(nav, /West Texas/);
   assert.match(nav, /Contact/);
+  assert.match(nav, /href="tel:\+14326141927"/);
 });
 
 test("declares a viewport, skip link, and keyboard-accessible mobile nav", () => {
@@ -134,49 +136,53 @@ test("grades the hero for type contrast and requests a sharp mobile crop", () =>
   assert.match(css, /\.hero-scrim\s*\{[^}]*linear-gradient\(to right/);
 });
 
-test("states the published capabilities, process, and west texas line", () => {
-  assert.match(html, /Pre-construction[\s\S]*?Planning\. Coordination\. Requirements\./);
-  assert.match(html, /HVAC installation[\s\S]*?Residential heating and cooling systems for new construction\./);
-  assert.match(html, /Builder coordination[\s\S]*?Schedule alignment from planning through installation\./);
-  assert.match(html, />Plan</);
-  assert.match(html, />Coordinate</);
-  assert.match(html, />Build</);
-  assert.match(html, /Local knowledge\. Builder coordination\. HVAC execution\./);
-  assert.match(html, /Let's talk\./);
+test("states the service offer, the call, and the west texas line", () => {
+  assert.match(html, /AC repair[\s\S]*?Cooling that quit, runs warm, or will not hold the house\./);
+  assert.match(html, /Heating repair[\s\S]*?Heat that will not start, or will not keep the house\./);
+  assert.match(html, /Diagnostics[\s\S]*?Find the fault before the repair begins\./);
+  assert.match(html, /Tune-ups[\s\S]*?Maintenance for the system already in the house\./);
+  assert.match(html, /Replacement[\s\S]*?System replacement and install for an existing home\./);
+  assert.match(html, /Emergency calls[\s\S]*?When the system is down, call and ask about a same-day visit\./);
+  assert.match(html, />Call</);
+  assert.match(html, />Diagnose</);
+  assert.match(html, />Recommend</);
+  assert.match(html, />Fix</);
+  assert.match(html, /Odessa, Midland, and surrounding West Texas\./);
+  assert.match(html, /Call now\./);
 });
 
-test("says why the HVAC matters and closes on the published claim", () => {
+test("says which signs mean the house needs service", () => {
   const matters = html.match(/<section class="matters"[\s\S]*?<\/section>/)?.[0] ?? "";
-  assert.match(matters, /id="matters"/);
-  assert.match(matters, /They feel this[\s\S]*?every day\./);
-  assert.match(matters, /Comfort\. Air quality\. Energy bills\. The homeowner feels the HVAC every day\./);
-  assert.match(matters, /Drywall goes up\. The ductwork is buried\./);
-  assert.match(matters, /A mistake is expensive to fix\./);
-  assert.match(matters, /Getting it right at rough-in is the whole game\./);
-  assert.match(matters, /Hire the best\. #1 in new-construction HVAC across Odessa &amp; Midland\./);
-  assert.match(matters, /href="#contact"/);
-  assert.ok(html.indexOf('id="spine"') < html.indexOf('id="matters"'));
-  assert.ok(html.indexOf('id="matters"') < html.indexOf('id="phases"'));
+  assert.match(matters, /id="signs"/);
+  assert.match(matters, /The house[\s\S]*?is talking\./);
+  assert.match(matters, /Cooling that blows warm\. Heat that will not start\./);
+  assert.match(matters, /Water at the unit\. Rooms that never catch up\./);
+  assert.match(matters, /That is a service call\./);
+  assert.match(matters, /href="tel:\+14326141927"/);
+  assert.ok(html.indexOf('id="services"') < html.indexOf('id="signs"'));
+  assert.ok(html.indexOf('id="signs"') < html.indexOf('id="service-call"'));
 });
 
-test("carries the louder v2 sections and the expanded palette", () => {
+test("carries the service sections and the expanded palette", () => {
   assert.match(html, /id="spine"/);
   assert.match(html, /Fast\.[\s\S]*?Efficient\.[\s\S]*?Precise\./);
-  assert.match(html, /id="phases"/);
-  assert.match(html, /Three phases\.[\s\S]*?One crew\./);
-  assert.match(html, />Rough-in</);
-  assert.match(html, />Trim-out</);
-  assert.match(html, />Final</);
+  assert.match(html, /id="service-call"/);
+  assert.match(html, /Call\.[\s\S]*?Then the fix\./);
+  assert.match(html, /id="maintenance"/);
+  assert.match(html, /Maintenance for the system already there\./);
+  assert.match(html, />Book</);
+  assert.match(html, />Check</);
+  assert.match(html, />Report</);
   assert.doesNotMatch(html, />Slab<|>Frame<|>Set<|>Start</);
   assert.match(html, /id="why"/);
-  assert.match(html, /The last crew treated the schedule like a suggestion\./);
+  assert.match(html, /Hear the fault before you buy the fix\./);
   assert.match(html, /id="get"/);
-  assert.match(html, /A partner who already knows the sequence\./);
+  assert.match(html, /A next step for the system you have\./);
   assert.match(html, /id="faq"/);
   assert.match(html, /Ask it straight\./);
-  assert.match(html, /mechanical sub <span class="cta-keep">catches up\.<\/span>/);
+  assert.match(html, /The house should feel <span class="cta-keep">right again\.<\/span>/);
   assert.match(css, /\.cta-keep\s*\{[^}]*white-space:\s*nowrap/);
-  assert.match(html, /Construction photography: Unsplash \(credits\)/);
+  assert.match(html, /Photography notes/);
   assert.match(html, /href="credits\.html"/);
   assert.doesNotMatch(html, /Not an Austin Air project/);
   assert.match(html, /href="#faq"/);
@@ -208,24 +214,25 @@ test("every img and source path referenced in the page exists", () => {
   }
   assert.ok(existsSync(resolve(root, "assets/phases/frame.jpg")));
   assert.ok(existsSync(resolve(root, "assets/austin-air-fleet.jpeg")));
+  assert.doesNotMatch(html, /assets\/phases|frame\.jpg/);
 });
 
-test("phase copy is plain text in one color", () => {
-  const phases = html.match(/<section class="phases"[\s\S]*?<\/section>/)?.[0] ?? "";
-  assert.match(phases, /Ductwork, lineset, condensate drains, and control wire\. Run before insulation and drywall\./);
-  assert.match(phases, /Equipment is set\. Registers, grilles, thermostat, and the final connections\. After drywall and paint\./);
-  assert.match(phases, /Start-up\. Checks\. An inspection-ready handoff\./);
-  assert.match(phases, /assets\/phases\/frame\.jpg/);
-  assert.doesNotMatch(phases, /assets\/phases\/(?:slab|start|house)/);
-  assert.doesNotMatch(phases, /<(?:mark|em|strong|span|b|i)\b/i);
-  assert.match(css, /\.phase-copy p\s*\{[^}]*color:\s*inherit/);
-  assert.doesNotMatch(css, /\.phase-copy p\s*\{[^}]*color:\s*var\(--paper\)/);
-  assert.match(css, /\.phase-trim\s*\{[^}]*background:\s*var\(--amber\)/);
-  assert.match(css, /\.phase-final\s*\{[^}]*background:\s*var\(--signal\)/);
+test("service-call copy is plain text in one color", () => {
+  const visit = html.match(/<section class="visit"[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.match(visit, /Phone[\s\S]*?Say what the cooling or the heat is doing\./);
+  assert.match(visit, /We look at the equipment in the house and find the fault\./);
+  assert.match(visit, /You hear the options before the work starts\./);
+  assert.match(visit, /We repair it\. If the system is used up/);
+  assert.doesNotMatch(visit, /assets\/phases/);
+  assert.doesNotMatch(visit, /<(?:mark|em|strong|span|b|i)\b/i);
+  assert.match(css, /\.visit-copy p\s*\{[^}]*color:\s*inherit/);
+  assert.doesNotMatch(css, /\.visit-copy p\s*\{[^}]*color:\s*var\(--paper\)/);
+  assert.match(css, /\.visit-amber\s*\{[^}]*background:\s*var\(--amber\)/);
+  assert.match(css, /\.visit-signal\s*\{[^}]*background:\s*var\(--signal\)/);
   assert.match(css, /\.marquee\s*\{[^}]*background:\s*var\(--navy\)/);
   assert.match(css, /\.marquee\s*\{[^}]*color:\s*var\(--paper\)/);
   assert.match(css, /\.marquee span\s*\{[^}]*-webkit-text-stroke:\s*0\.02em var\(--amber\)/);
-  assert.match(css, /\.phases-intro p,\s*\.phase-copy p,[\s\S]*?transform:\s*translateZ\(0\)/);
+  assert.match(css, /\.visit-intro p,\s*\.visit-copy p,[\s\S]*?transform:\s*translateZ\(0\)/);
   assert.match(css, /\.faq summary\s*\{[^}]*display:\s*list-item/);
   assert.doesNotMatch(css, /\.faq summary\s*\{[^}]*display:\s*flex/);
   assert.match(css, /:focus-visible\s*\{[^}]*outline:\s*3px solid var\(--paper\)/);
@@ -233,22 +240,30 @@ test("phase copy is plain text in one color", () => {
   assert.match(css, /\.site-header\.is-hidden\s*\{[^}]*translateY\(-110%\)/);
 });
 
-test("visible copy has no digits beyond verified facts and phase labels", () => {
+test("visible copy has no digits beyond verified facts and step labels", () => {
   const visible = html
     .replace(/<!--[\s\S]*?-->/g, " ")
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
     .replace(/<style[\s\S]*?<\/style>/gi, " ")
     .replace(/<[^>]+>/g, " ");
-  // #1 and 7+ are the only extra digits, and only inside owner-published
-  // phrases confirmed on https://www.theaustinair.com/ :
-  // "#1 Residential New Construction HVAC in Odessa & Midland."
-  // "on time without fail for over 7 years."
-  const allowed = ["+14326141927", "432", "614", "1927", "6820", "79762", "8am", "5pm", "01", "02", "03", "04", "#1", "7+"];
+  const allowed = ["+14326141927", "432", "614", "1927", "6820", "79762", "8am", "5pm", "01", "02", "03", "04", "05", "06"];
   let stripped = visible;
   for (const token of allowed) stripped = stripped.split(token).join(" ");
   assert.doesNotMatch(stripped, /\d/, `unexpected digit in visible copy: ${stripped.match(/\d+/g)}`);
-  assert.match(html, /#1 in <span class="claim-keep">new-construction HVAC<\/span> across Odessa &amp; Midland\./);
-  assert.match(html, /On time, without fail, 7\+ years running\./);
+  assert.doesNotMatch(html, /#1/);
+  assert.doesNotMatch(html, /7\+/);
   assert.doesNotMatch(html, /best in the country/i);
   assert.doesNotMatch(html, /2015/);
+  assert.doesNotMatch(visible, /\$|warranty|licensed|certified|years in business|financing/i);
+});
+
+test("published pages drop new-construction wording", () => {
+  const banned = /builder|new construction|rough-in|trim-out|phase|framing/i;
+  for (const name of ["index.html", "credits.html"]) {
+    const text = readFileSync(resolve(root, name), "utf8");
+    assert.doesNotMatch(text, banned, `${name} still has new-construction wording`);
+  }
+  assert.match(html, /"@type": \["HVACBusiness", "LocalBusiness"\]/);
+  assert.match(html, /Fast\. Efficient\. Precise\./);
+  assert.doesNotMatch(html, /rel="canonical"/i);
 });

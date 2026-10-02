@@ -253,7 +253,7 @@ body.nav-open .site-header .site-nav a { color: var(--navy); }
 .contact h2,
 .spine h2,
 .matters h2,
-.phases h2,
+.visit h2,
 .why h2,
 .get h2,
 .faq h2,
@@ -720,7 +720,7 @@ html.motion .territory.is-in .axis-line {
 .spine-grid li:nth-child(2) { background: var(--sand); color: var(--navy); }
 .spine-grid li:nth-child(3) { background: var(--amber); color: var(--navy); }
 .spine-grid h3,
-.phase-copy h3,
+.visit-copy h3,
 .why-list h3 {
   font-family: var(--display);
   font-weight: 400;
@@ -763,36 +763,36 @@ html.motion .territory.is-in .axis-line {
 }
 .matters .cta { margin-top: 1.5rem; }
 
-.phases {
+.visit {
   padding: clamp(4rem, 10vh, 7rem) 0 0;
   background: var(--navy);
   color: var(--paper);
 }
-.phases-intro {
+.visit-intro {
   padding: 0 clamp(1.1rem, 5vw, 5.5rem) clamp(1.6rem, 4vh, 2.4rem);
 }
-.phases-intro p:last-child {
+.visit-intro p:last-child {
   max-width: 52ch;
   margin-top: 1.2rem;
   color: var(--sand);
   font-size: 1.05rem;
   line-height: 1.6;
 }
-.phases h2 { font-size: clamp(3.1rem, 8.4vw, 7.2rem); }
-.phase-list {
+.visit h2 { font-size: clamp(3.1rem, 8.4vw, 7.2rem); }
+.visit-list {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.phase-list article { display: block; }
-.phase-list figure { margin: 0; }
-.phase-list img {
+.visit-list article { display: block; }
+.visit-list figure { margin: 0; }
+.visit-list img {
   display: block;
   width: 100%;
   height: clamp(18rem, 62vw, 46rem);
   object-fit: cover;
 }
-.phase-band {
+.visit-band {
   display: grid;
   grid-template-columns: auto minmax(0, 40rem);
   gap: clamp(0.6rem, 3vw, 2.4rem);
@@ -801,7 +801,7 @@ html.motion .territory.is-in .axis-line {
   background: var(--sand);
   color: var(--navy);
 }
-.phase-graphic {
+.visit-graphic {
   position: relative;
   grid-template-rows: auto minmax(0, 1fr);
   min-height: clamp(22rem, 46vw, 36rem);
@@ -809,7 +809,7 @@ html.motion .territory.is-in .axis-line {
   padding-bottom: clamp(2.4rem, 6vh, 4rem);
   overflow: hidden;
 }
-.phase-air {
+.visit-air {
   position: relative;
   grid-column: 1 / -1;
   grid-row: 1;
@@ -821,17 +821,28 @@ html.motion .territory.is-in .axis-line {
   margin: 1rem calc(-1 * clamp(1.1rem, 5vw, 5.5rem)) 0;
   pointer-events: none;
 }
-.phase-trim { background: var(--amber); color: var(--navy); }
-.phase-trim .phase-air {
+.visit-amber { background: var(--amber); color: var(--navy); }
+.visit-amber .visit-air {
   height: clamp(4rem, 9vw, 6.5rem);
   color: var(--navy);
 }
-.phase-final { background: var(--signal); color: var(--navy); }
-.phase-final .phase-air {
+.visit-signal { background: var(--signal); color: var(--navy); }
+.visit-signal .visit-air {
   height: clamp(5.25rem, 13vw, 8.75rem);
   color: var(--navy);
 }
-.phase-graphic .phase-num {
+.visit-paper { background: var(--paper); color: var(--navy); }
+.visit-paper .visit-air {
+  height: clamp(4.25rem, 10vw, 7rem);
+  color: var(--amber);
+}
+.visit-copy a,
+.timeline a {
+  color: inherit;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.16em;
+}
+.visit-graphic .visit-num {
   position: relative;
   grid-column: 1;
   grid-row: 2;
@@ -839,12 +850,12 @@ html.motion .territory.is-in .axis-line {
   line-height: 0.92;
   -webkit-text-stroke-width: 2px;
 }
-.phase-graphic .phase-copy {
+.visit-graphic .visit-copy {
   position: relative;
   grid-column: 2;
   grid-row: 2;
 }
-.phase-num {
+.visit-num {
   margin: 0;
   font-family: var(--display);
   font-size: clamp(5.4rem, 14vw, 11.5rem);
@@ -854,8 +865,8 @@ html.motion .territory.is-in .axis-line {
   color: transparent;
   -webkit-text-stroke: 1.5px var(--navy);
 }
-.phase-copy h3 { font-size: clamp(2.6rem, 4.4vw, 4.2rem); }
-.phase-copy p {
+.visit-copy h3 { font-size: clamp(2.6rem, 4.4vw, 4.2rem); }
+.visit-copy p {
   max-width: 36ch;
   margin-top: 0.55rem;
   color: inherit;
@@ -863,8 +874,8 @@ html.motion .territory.is-in .axis-line {
   line-height: 1.55;
 }
 /* Small type on navy picks up amber and blue from LCD subpixel fringes. */
-.phases-intro p,
-.phase-copy p,
+.visit-intro p,
+.visit-copy p,
 .spine-grid li:first-child p,
 .why-list li:nth-child(3) p,
 .contact-quiet,
@@ -1054,12 +1065,12 @@ html.motion .territory.is-in .axis-line {
   .spine-grid,
   .why-list { grid-template-columns: 1fr; }
   .spine-grid li { min-height: 0; }
-  .phase-band { grid-template-columns: 1fr; gap: 0.2rem; }
-  .phase-num { font-size: clamp(4.4rem, 24vw, 7rem); }
-  .phase-graphic { min-height: clamp(18rem, 78vw, 24rem); row-gap: 1.15rem; }
-  .phase-graphic .phase-num { grid-column: 1; grid-row: 2; font-size: clamp(6.5rem, 36vw, 9rem); }
-  .phase-graphic .phase-copy { grid-column: 1; grid-row: 3; }
-  .phase-list img { height: clamp(16rem, 78vw, 24rem); }
+  .visit-band { grid-template-columns: 1fr; gap: 0.2rem; }
+  .visit-num { font-size: clamp(4.4rem, 24vw, 7rem); }
+  .visit-graphic { min-height: clamp(18rem, 78vw, 24rem); row-gap: 1.15rem; }
+  .visit-graphic .visit-num { grid-column: 1; grid-row: 2; font-size: clamp(6.5rem, 36vw, 9rem); }
+  .visit-graphic .visit-copy { grid-column: 1; grid-row: 3; }
+  .visit-list img { height: clamp(16rem, 78vw, 24rem); }
   .get {
     grid-template-columns: 1fr;
     align-items: start;
@@ -1193,8 +1204,8 @@ html.motion .territory.is-in .axis-line {
   .timeline p,
   .territory-line,
   .spine-grid p,
-  .phases-intro p,
-  .phase-copy p,
+  .visit-intro p,
+  .visit-copy p,
   .why-list p,
   .get li {
     font-size: 1.0625rem;
