@@ -174,6 +174,8 @@ test("carries the louder v2 sections and the expanded palette", () => {
   assert.match(html, /A partner who already knows the sequence\./);
   assert.match(html, /id="faq"/);
   assert.match(html, /Ask it straight\./);
+  assert.match(html, /mechanical sub <span class="cta-keep">catches up\.<\/span>/);
+  assert.match(css, /\.cta-keep\s*\{[^}]*white-space:\s*nowrap/);
   assert.match(html, /Construction photography: Unsplash \(credits\)/);
   assert.match(html, /href="credits\.html"/);
   assert.doesNotMatch(html, /Not an Austin Air project/);

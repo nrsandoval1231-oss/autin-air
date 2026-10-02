@@ -803,36 +803,47 @@ html.motion .territory.is-in .axis-line {
 }
 .phase-graphic {
   position: relative;
+  grid-template-rows: auto minmax(0, 1fr);
   min-height: clamp(22rem, 46vw, 36rem);
   align-items: end;
   padding-bottom: clamp(2.4rem, 6vh, 4rem);
   overflow: hidden;
 }
 .phase-air {
-  position: absolute;
-  left: 0;
-  width: 100%;
+  position: relative;
+  grid-column: 1 / -1;
+  grid-row: 1;
+  align-self: start;
+  display: block;
+  width: calc(100% + 2 * clamp(1.1rem, 5vw, 5.5rem));
+  max-width: none;
+  height: clamp(4.5rem, 11vw, 7.5rem);
+  margin: 1rem calc(-1 * clamp(1.1rem, 5vw, 5.5rem)) 0;
   pointer-events: none;
 }
 .phase-trim { background: var(--amber); color: var(--navy); }
 .phase-trim .phase-air {
-  top: 14%;
-  height: clamp(5rem, 14vw, 9rem);
+  height: clamp(4rem, 9vw, 6.5rem);
   color: var(--navy);
 }
 .phase-final { background: var(--signal); color: var(--navy); }
 .phase-final .phase-air {
-  top: 22%;
-  height: clamp(6.5rem, 18vw, 11rem);
+  height: clamp(5.25rem, 13vw, 8.75rem);
   color: var(--navy);
 }
 .phase-graphic .phase-num {
   position: relative;
+  grid-column: 1;
+  grid-row: 2;
   font-size: clamp(8rem, 18vw, 16rem);
   line-height: 0.92;
   -webkit-text-stroke-width: 2px;
 }
-.phase-graphic .phase-copy { position: relative; }
+.phase-graphic .phase-copy {
+  position: relative;
+  grid-column: 2;
+  grid-row: 2;
+}
 .phase-num {
   margin: 0;
   font-family: var(--display);
@@ -883,6 +894,7 @@ html.motion .territory.is-in .axis-line {
   line-height: 0.95;
   text-transform: uppercase;
 }
+.cta-keep { white-space: nowrap; }
 .cta-signal {
   background: var(--navy);
   border-color: var(--navy);
@@ -1044,8 +1056,9 @@ html.motion .territory.is-in .axis-line {
   .spine-grid li { min-height: 0; }
   .phase-band { grid-template-columns: 1fr; gap: 0.2rem; }
   .phase-num { font-size: clamp(4.4rem, 24vw, 7rem); }
-  .phase-graphic { min-height: clamp(18rem, 78vw, 24rem); }
-  .phase-graphic .phase-num { font-size: clamp(6.5rem, 36vw, 9rem); }
+  .phase-graphic { min-height: clamp(18rem, 78vw, 24rem); row-gap: 1.15rem; }
+  .phase-graphic .phase-num { grid-column: 1; grid-row: 2; font-size: clamp(6.5rem, 36vw, 9rem); }
+  .phase-graphic .phase-copy { grid-column: 1; grid-row: 3; }
   .phase-list img { height: clamp(16rem, 78vw, 24rem); }
   .get {
     grid-template-columns: 1fr;
