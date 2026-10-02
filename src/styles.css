@@ -282,7 +282,9 @@ body.nav-open .site-header .site-nav a { color: var(--navy); }
   letter-spacing: -0.02em;
   line-height: 0.92;
   text-transform: uppercase;
+  text-wrap: balance;
 }
+.claim-keep { white-space: nowrap; }
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -803,11 +805,10 @@ html.motion .territory.is-in .axis-line {
   color: var(--paper);
 }
 .phases-intro {
-  max-width: 16em;
   padding: 0 clamp(1.1rem, 5vw, 5.5rem) clamp(1.6rem, 4vh, 2.4rem);
 }
 .phases-intro p:last-child {
-  max-width: 34ch;
+  max-width: 52ch;
   margin-top: 1.2rem;
   color: var(--sand);
   font-size: 1.05rem;

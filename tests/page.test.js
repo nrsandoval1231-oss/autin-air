@@ -230,7 +230,7 @@ test("visible copy has no digits beyond verified facts and phase labels", () => 
   let stripped = visible;
   for (const token of allowed) stripped = stripped.split(token).join(" ");
   assert.doesNotMatch(stripped, /\d/, `unexpected digit in visible copy: ${stripped.match(/\d+/g)}`);
-  assert.match(html, /#1 in new-construction HVAC(?:<br>)?across Odessa &amp; Midland\./);
+  assert.match(html, /#1 in <span class="claim-keep">new-construction HVAC<\/span> across Odessa &amp; Midland\./);
   assert.match(html, /On time, without fail, 7\+ years running\./);
   assert.doesNotMatch(html, /best in the country/i);
   assert.doesNotMatch(html, /2015/);
