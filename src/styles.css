@@ -771,7 +771,6 @@ html.motion .territory.is-in .axis-line {
   object-fit: cover;
 }
 .phase-list li:first-child img { object-position: center 45%; }
-.phase-list li:nth-child(3) img { object-position: center 50%; }
 .phase-list li:nth-child(4) img { object-position: center 55%; }
 .phase-band {
   display: grid;
@@ -784,6 +783,27 @@ html.motion .territory.is-in .axis-line {
 }
 .phase-list li:nth-child(2) .phase-band { background: var(--amber); }
 .phase-list li:nth-child(3) .phase-band { background: var(--navy); color: var(--paper); }
+.phase-set {
+  position: relative;
+  min-height: clamp(22rem, 46vw, 36rem);
+  align-items: end;
+  overflow: hidden;
+}
+.phase-air {
+  position: absolute;
+  top: 16%;
+  left: 0;
+  width: 100%;
+  height: clamp(4.5rem, 12vw, 8rem);
+  color: var(--amber);
+  pointer-events: none;
+}
+.phase-set .phase-num {
+  position: relative;
+  font-size: clamp(8rem, 18vw, 16rem);
+  -webkit-text-stroke-width: 3px;
+}
+.phase-set .phase-copy { position: relative; }
 .phase-list li:nth-child(4) .phase-band { background: var(--signal); color: var(--navy); }
 .phase-num {
   margin: 0;
@@ -1008,6 +1028,8 @@ html.motion .territory.is-in .axis-line {
   .spine-grid li { min-height: 0; }
   .phase-band { grid-template-columns: 1fr; gap: 0.2rem; }
   .phase-num { font-size: clamp(4.4rem, 24vw, 7rem); }
+  .phase-set { min-height: clamp(18rem, 78vw, 24rem); }
+  .phase-set .phase-num { font-size: clamp(6.5rem, 36vw, 9rem); }
   .phase-list img { height: clamp(16rem, 78vw, 24rem); }
   .get-photo img { height: 18rem; }
   .get {
