@@ -25,10 +25,16 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" data-header>
     <a class="brand" href="#main">
-      <picture>
-        <source type="image/webp" srcset="assets/logo/logo-560.webp 560w, assets/logo/logo-1120.webp 1120w" sizes="(max-width: 899px) 46vw, 280px">
-        <img src="assets/austin-air-logo.png" alt="The Austin Air Company" width="2363" height="403">
-      </picture>
+      <span class="logo-swap">
+        <picture class="logo-for-hero">
+          <source type="image/png" srcset="assets/logo/logo-light-2x.png 2x, assets/logo/logo-light-3x.png 3x">
+          <img src="assets/austin-air-logo.png" alt="The Austin Air Company" width="2363" height="403">
+        </picture>
+        <picture class="logo-for-bar" aria-hidden="true">
+          <source type="image/png" srcset="assets/logo/logo-alpha-2x.png 2x, assets/logo/logo-alpha-3x.png 3x">
+          <img src="assets/austin-air-logo.png" alt="" width="2363" height="403">
+        </picture>
+      </span>
     </a>
     <a class="header-call" href="tel:+14326141927">Call</a>
     <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="site-nav">

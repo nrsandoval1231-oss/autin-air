@@ -12,7 +12,9 @@ Published business details: The Austin Air Company; residential new-construction
 Derived files, made from those originals without redrawing or recoloring:
 
 - `assets/fleet/fleet-*.avif` and `assets/fleet/fleet-*.webp`: resized copies of `austin-air-fleet.jpeg` for responsive delivery. `fleet-1280.jpg` is the same crop for social meta.
-- `assets/logo/logo-*.webp`: resized copies of `austin-air-logo.png`. The PNG in the header `src` is still the original file.
+- `assets/logo/logo-*.webp`: resized copies of `austin-air-logo.png`. The header `img` `src` is still the original file.
+- `assets/logo/logo-alpha-2x.png` and `logo-alpha-3x.png`: the original mark with a clean alpha edge. Partial-alpha fringe pixels were reassigned to the solid navy or red they belong to, so the edge does not carry a white matte. Opaque white pixels in the red bar are the tagline and were kept. These are the header mark on the cream bar.
+- `assets/logo/logo-light-2x.png` and `logo-light-3x.png`: the same alpha mark with navy ink changed to paper (`#f3efe6`). Red and the white tagline are unchanged. These are the header mark over the dark hero. The 2x files are 560 pixels wide and the 3x files are 840, for a slot about 280 CSS pixels wide.
 - `assets/favicon.png` and `assets/apple-touch-icon.png`: the original logo scaled uniformly onto a warm-white square. The logo pixels are not recolored.
 - `assets/fonts/`: latin subsets of Instrument Serif and Monda (Open Font License), self-hosted.
 
