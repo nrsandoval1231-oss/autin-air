@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { existsSync, readFileSync, statSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
@@ -202,4 +202,49 @@ test("visible copy has no digits beyond verified facts and phase labels", () => 
   assert.match(html, /On time, without fail, 7\+ years running\./);
   assert.doesNotMatch(html, /best in the country/i);
   assert.doesNotMatch(html, /2015/);
+});
+
+function jpegOrientation(buf) {
+  if (buf[0] !== 0xff || buf[1] !== 0xd8) return null;
+  let offset = 2;
+  while (offset + 4 < buf.length) {
+    if (buf[offset] !== 0xff) return null;
+    const marker = buf[offset + 1];
+    if (marker === 0xda || marker === 0xd9) return null;
+    const size = buf.readUInt16BE(offset + 2);
+    if (marker === 0xe1 && buf.toString("ascii", offset + 4, offset + 8) === "Exif") {
+      return orientationInTiff(buf, offset + 10);
+    }
+    offset += 2 + size;
+  }
+  return null;
+}
+
+function orientationInTiff(buf, tiff) {
+  const little = buf.toString("ascii", tiff, tiff + 2) === "II";
+  const u16 = (at) => (little ? buf.readUInt16LE(at) : buf.readUInt16BE(at));
+  const u32 = (at) => (little ? buf.readUInt32LE(at) : buf.readUInt32BE(at));
+  if (u16(tiff + 2) !== 42) return null;
+  let ifd = tiff + u32(tiff + 4);
+  for (let depth = 0; depth < 4 && ifd + 2 < buf.length; depth += 1) {
+    const count = u16(ifd);
+    for (let i = 0; i < count; i += 1) {
+      const entry = ifd + 2 + i * 12;
+      if (u16(entry) === 0x0112) return u16(entry + 8);
+    }
+    const next = u32(ifd + 2 + count * 12);
+    if (!next) return null;
+    ifd = tiff + next;
+  }
+  return null;
+}
+
+test("phase JPEGs have no EXIF orientation other than upright", () => {
+  const dir = resolve(root, "assets/phases");
+  const files = readdirSync(dir).filter((name) => name.endsWith(".jpg"));
+  assert.ok(files.includes("set.jpg"));
+  for (const name of files) {
+    const orient = jpegOrientation(readFileSync(resolve(dir, name)));
+    assert.ok(orient === null || orient === 1, `${name} EXIF orientation is ${orient}`);
+  }
 });

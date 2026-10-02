@@ -771,7 +771,7 @@ html.motion .territory.is-in .axis-line {
   object-fit: cover;
 }
 .phase-list li:first-child img { object-position: center 45%; }
-.phase-list li:nth-child(3) img { object-position: 42% 60%; }
+.phase-list li:nth-child(3) img { object-position: 40% 46%; }
 .phase-list li:nth-child(4) img { object-position: center 55%; }
 .phase-band {
   display: grid;
