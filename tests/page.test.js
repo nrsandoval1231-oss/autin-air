@@ -127,9 +127,23 @@ test("states the published capabilities, process, and west texas line", () => {
   assert.match(html, /Let's talk\./);
 });
 
+test("says why the HVAC matters and closes on the published claim", () => {
+  const matters = html.match(/<section class="matters"[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.match(matters, /id="matters"/);
+  assert.match(matters, /They feel this[\s\S]*?every day\./);
+  assert.match(matters, /Comfort\. Air quality\. Energy bills\. The homeowner feels the HVAC every day\./);
+  assert.match(matters, /Drywall goes up\. The ductwork is buried\./);
+  assert.match(matters, /A mistake is expensive to fix\./);
+  assert.match(matters, /Getting it right at rough-in is the whole game\./);
+  assert.match(matters, /Hire the best\. #1 in new-construction HVAC across Odessa &amp; Midland\./);
+  assert.match(matters, /href="#contact"/);
+  assert.ok(html.indexOf('id="spine"') < html.indexOf('id="matters"'));
+  assert.ok(html.indexOf('id="matters"') < html.indexOf('id="phases"'));
+});
+
 test("carries the louder v2 sections and the expanded palette", () => {
   assert.match(html, /id="spine"/);
-  assert.match(html, /Fast\.[\s\S]*?Affordable\.[\s\S]*?Precise\./);
+  assert.match(html, /Fast\.[\s\S]*?Efficient\.[\s\S]*?Precise\./);
   assert.match(html, /id="phases"/);
   assert.match(html, /Four phases\.[\s\S]*?One crew\./);
   assert.match(html, />Slab</);

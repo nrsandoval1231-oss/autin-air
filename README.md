@@ -4,7 +4,7 @@ Static website for The Austin Air Company, a residential new-construction HVAC c
 
 ## Architecture
 
-One page: `index.html`, `src/styles.css`, and `src/site.js`. No framework and no build step. `src/site.js` handles the header, the mobile menu, and a few scroll transitions. The page adds a Fast / Affordable / Precise spine, a four-phase build story, why builders switch, what you get, repeated calls to action, and a builder FAQ.
+One page: `index.html`, `src/styles.css`, and `src/site.js`. No framework and no build step. `src/site.js` handles the header, the mobile menu, and a few scroll transitions. The page adds a Fast / Efficient / Precise spine, a section on why the HVAC matters, a four-phase build story, why builders switch, what you get, repeated calls to action, and a builder FAQ.
 
 `src/form.js` validates a service-request form and can post JSON to a delivery endpoint. It is not mounted. No endpoint has been confirmed, so the page does not show a form.
 
