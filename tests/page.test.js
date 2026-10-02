@@ -142,7 +142,7 @@ test("carries the louder v2 sections and the expanded palette", () => {
   assert.match(html, /A partner who already knows the sequence\./);
   assert.match(html, /id="faq"/);
   assert.match(html, /Ask it straight\./);
-  assert.match(html, /Construction photography: Unsplash \(credits\)/);
+  assert.match(html, /Construction photography \(credits\)/);
   assert.match(html, /href="credits\.html"/);
   assert.doesNotMatch(html, /Not an Austin Air project/);
   assert.match(html, /href="#faq"/);
