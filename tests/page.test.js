@@ -129,7 +129,7 @@ test("states the published capabilities, process, and west texas line", () => {
 
 test("carries the louder v2 sections and the expanded palette", () => {
   assert.match(html, /id="spine"/);
-  assert.match(html, /Fast\.[\s\S]*?Affordable\.[\s\S]*?Precise\./);
+  assert.match(html, /Fast\.[\s\S]*?Efficient\.[\s\S]*?Precise\./);
   assert.match(html, /id="phases"/);
   assert.match(html, /Four phases\.[\s\S]*?One crew\./);
   assert.match(html, />Slab</);
