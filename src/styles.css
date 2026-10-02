@@ -75,7 +75,7 @@ button, input, textarea { font: inherit; font-weight: 400; }
 #main:focus,
 #main:focus-visible { outline: none; }
 
-[id] { scroll-margin-top: var(--header-h); }
+[id] { scroll-margin-top: calc(var(--header-h) + 0.75rem); }
 
 .site-header {
   position: fixed;
@@ -88,7 +88,7 @@ button, input, textarea { font: inherit; font-weight: 400; }
   padding: 0.7rem clamp(1rem, 3vw, 2.25rem);
   background: transparent;
   border-bottom: 1px solid transparent;
-  transition: background 400ms var(--ease), border-color 400ms var(--ease);
+  transition: border-color 400ms var(--ease);
 }
 .site-header.is-solid,
 body.nav-open .site-header {
@@ -130,7 +130,6 @@ body.nav-open .site-header {
   letter-spacing: 0.12em;
   text-decoration: none;
   text-transform: uppercase;
-  transition: color 400ms var(--ease);
 }
 .site-header.is-solid .site-nav a,
 body.nav-open .site-header .site-nav a { color: var(--navy); }
@@ -644,7 +643,7 @@ html.motion .territory.is-in .axis-line {
 
 .spine {
   position: relative;
-  padding: clamp(3.5rem, 9vh, 6.5rem) clamp(1.1rem, 5vw, 5.5rem) clamp(4rem, 10vh, 7rem);
+  padding: calc(var(--header-h) + clamp(1.25rem, 3vh, 2.25rem)) clamp(1.1rem, 5vw, 5.5rem) clamp(4rem, 10vh, 7rem);
   background: var(--paper);
   color: var(--navy);
 }
@@ -1009,7 +1008,7 @@ html.motion .territory.is-in .axis-line {
     text-decoration: none;
     text-transform: uppercase;
     cursor: pointer;
-    transition: color 400ms var(--ease), border-color 400ms var(--ease), background 400ms var(--ease);
+    transition: border-color 400ms var(--ease);
   }
   .site-header.is-solid .header-call,
   .site-header.is-solid .nav-toggle,

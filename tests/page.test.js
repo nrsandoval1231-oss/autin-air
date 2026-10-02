@@ -152,6 +152,30 @@ test("carries the louder v2 sections and the expanded palette", () => {
   assert.match(css, /prefers-reduced-motion: reduce\)[\s\S]*\.marquee-track/);
 });
 
+test("every img and source path referenced in the page exists", () => {
+  const paths = new Set();
+  for (const match of html.matchAll(/<(?:img|source)\b[^>]*>/g)) {
+    const tag = match[0];
+    for (const attr of tag.matchAll(/\b(?:src|srcset)="([^"]+)"/g)) {
+      for (const part of attr[1].split(",")) {
+        const url = part.trim().split(/\s+/)[0];
+        if (!url || /^(?:https?:|data:|#)/.test(url)) continue;
+        paths.add(url);
+      }
+    }
+  }
+  assert.ok(paths.size > 10);
+  for (const url of paths) assert.ok(existsSync(resolve(root, url)), `missing image ${url}`);
+});
+
+test("phase copy is plain text in one color", () => {
+  const phases = html.match(/<section class="phases"[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.match(phases, /mechanical path/);
+  assert.match(phases, /rough-in/);
+  assert.doesNotMatch(phases, /<(?:mark|em|strong|span|b|i)\b/i);
+  assert.match(css, /\.phase-copy p\s*\{[^}]*color:\s*var\(--paper\)/);
+});
+
 test("visible copy has no digits beyond verified facts and phase labels", () => {
   const visible = html
     .replace(/<!--[\s\S]*?-->/g, " ")
