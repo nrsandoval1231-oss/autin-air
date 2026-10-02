@@ -60,6 +60,7 @@ test("declares a viewport, skip link, and keyboard-accessible mobile nav", () =>
   assert.match(html, /class="skip-link"/);
   assert.match(html, /data-nav-toggle[\s\S]*?aria-expanded="false"/);
   assert.match(html, /aria-controls="site-nav"/);
+  assert.match(html, /<nav\b[^>]*class="site-nav"/);
   assert.match(css, /:focus-visible/);
 });
 
