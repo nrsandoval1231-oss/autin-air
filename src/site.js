@@ -81,7 +81,14 @@ export function bindNav(doc, win) {
   toggle.addEventListener("click", () => {
     const open = !isOpen();
     setOpen(open);
-    if (open && mobile()) links()[0]?.focus();
+    if (open && mobile()) {
+      const first = links()[0];
+      first?.focus();
+      // Chromium returns focus to the button after keyboard activation, past the next frame.
+      win.setTimeout?.(() => {
+        if (isOpen()) first?.focus();
+      }, 50);
+    }
   });
 
   doc.addEventListener("keydown", (event) => {

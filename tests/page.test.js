@@ -106,6 +106,16 @@ test("supports reduced motion and keeps contact links readable on navy", () => {
   assert.doesNotMatch(html, /rel="canonical"/i);
 });
 
+test("grades the hero for type contrast and requests a sharp mobile crop", () => {
+  assert.match(html, /class="kicker-mark">The Austin Air Company</);
+  assert.match(html, /class="kicker-place">Odessa, Texas</);
+  assert.match(html, /fleet-3840\.avif 3840w/);
+  assert.match(html, /sizes="\(max-width: 520px\) 280vw,/);
+  assert.match(css, /\.site-header\s*\{[^}]*background:\s*transparent/);
+  assert.match(css, /\.site-header\.is-solid,\s*body\.nav-open \.site-header\s*\{[^}]*background:\s*var\(--paper\)/);
+  assert.match(css, /\.hero-scrim\s*\{[^}]*linear-gradient\(to right/);
+});
+
 test("states the published capabilities, process, and west texas line", () => {
   assert.match(html, /Pre-construction[\s\S]*?Planning\. Coordination\. Requirements\./);
   assert.match(html, /HVAC installation[\s\S]*?Residential heating and cooling systems for new construction\./);
