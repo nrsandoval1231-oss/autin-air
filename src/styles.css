@@ -685,8 +685,8 @@ html.motion .territory.is-in .axis-line {
     font-size: 1rem;
     letter-spacing: 0.08em;
   }
-  .hero-media img { object-position: 62% center; }
-  .fleet-media img { object-position: 42% center; }
+  .hero-media img { object-position: 66% 42%; }
+  .fleet-media img { object-position: 58% 70%; }
 }
 
 @media (max-width: 420px) {
