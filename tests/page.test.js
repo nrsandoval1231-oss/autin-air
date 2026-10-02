@@ -174,6 +174,7 @@ test("phase copy is plain text in one color", () => {
   assert.match(phases, /rough-in/);
   assert.doesNotMatch(phases, /<(?:mark|em|strong|span|b|i)\b/i);
   assert.match(css, /\.phase-copy p\s*\{[^}]*color:\s*var\(--paper\)/);
+  assert.match(css, /\.phases-intro p,\s*\.phase-copy p,[\s\S]*?transform:\s*translateZ\(0\)/);
 });
 
 test("visible copy has no digits beyond verified facts and phase labels", () => {

@@ -745,6 +745,15 @@ html.motion .territory.is-in .axis-line {
   font-size: 1.05rem;
   line-height: 1.6;
 }
+/* Small type on navy picks up amber and blue from LCD subpixel fringes. */
+.phases-intro p,
+.phase-copy p,
+.phase-list figcaption,
+.phase-note {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translateZ(0);
+}
 .phase-list figure { grid-area: photo; margin: 0; }
 .phase-list img,
 .get-photo img {
