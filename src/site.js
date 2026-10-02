@@ -49,10 +49,24 @@ export function applyFleetScale(img, entry, reduced) {
   img.style.transform = `scale(${fleetScale(entry).toFixed(4)})`;
 }
 
-export function bindHeader(header, win) {
-  const update = () => header.classList.toggle("is-solid", win.scrollY > 12);
+export function bindHeader(header, win, doc = globalThis.document) {
+  let last = win.scrollY || 0;
+  const reduce = win.matchMedia?.("(prefers-reduced-motion: reduce)");
+  const update = () => {
+    const y = win.scrollY || 0;
+    header.classList.toggle("is-solid", y > 12);
+    const focused = !!(doc && header.contains?.(doc.activeElement));
+    const reduced = !!reduce?.matches;
+    const menuOpen = !!doc?.body?.classList?.contains("nav-open");
+    if (reduced || focused || y < 48 || menuOpen) header.classList.remove("is-hidden");
+    else if (y > last + 6) header.classList.add("is-hidden");
+    else if (y < last - 6) header.classList.remove("is-hidden");
+    last = y;
+  };
   update();
   win.addEventListener("scroll", update, { passive: true });
+  doc?.addEventListener?.("focusin", update);
+  reduce?.addEventListener?.("change", update);
   return update;
 }
 

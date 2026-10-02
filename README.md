@@ -33,7 +33,7 @@ Check the page in a browser at 1440, 1280, 768, 430, 390, 375, and 320. Confirm 
 
 ## Assets
 
-The original logo and fleet photograph are in `assets/`, with sources in `assets/SOURCES.md`. Those files are unchanged. AVIF and WebP variants are generated from the fleet photograph. Construction-phase pictures in `assets/phases/` are Unsplash photographs, credited in `assets/SOURCES.md`, and are not Austin Air jobs. Display type is Instrument Serif and interface type is Monda, both self-hosted.
+The original logo and fleet photograph are in `assets/`, with sources in `assets/SOURCES.md`. Those files are unchanged. AVIF and WebP variants are generated from the fleet photograph. Construction-phase pictures in `assets/phases/` are Unsplash photographs, credited in `assets/SOURCES.md` and on `credits.html`, and are not Austin Air jobs. Display type is Instrument Serif and interface type is Monda, both self-hosted.
 
 ## Deploy
 

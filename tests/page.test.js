@@ -142,8 +142,9 @@ test("carries the louder v2 sections and the expanded palette", () => {
   assert.match(html, /A partner who already knows the sequence\./);
   assert.match(html, /id="faq"/);
   assert.match(html, /Ask it straight\./);
-  assert.match(html, /They are not Austin Air jobs\./);
-  assert.match(html, /Not an Austin Air project\./);
+  assert.match(html, /Construction photography: Unsplash \(credits\)/);
+  assert.match(html, /href="credits\.html"/);
+  assert.doesNotMatch(html, /Not an Austin Air project/);
   assert.match(html, /href="#faq"/);
   assert.match(css, /--amber:\s*#e07a2f/);
   assert.match(css, /--sand:\s*#e6d3b0/);
@@ -173,8 +174,14 @@ test("phase copy is plain text in one color", () => {
   assert.match(phases, /mechanical path/);
   assert.match(phases, /rough-in/);
   assert.doesNotMatch(phases, /<(?:mark|em|strong|span|b|i)\b/i);
-  assert.match(css, /\.phase-copy p\s*\{[^}]*color:\s*var\(--paper\)/);
+  assert.match(css, /\.phase-copy p\s*\{[^}]*color:\s*inherit/);
+  assert.match(css, /\.phase-list li:nth-child\(3\) \.phase-copy p\s*\{[^}]*color:\s*var\(--paper\)/);
   assert.match(css, /\.phases-intro p,\s*\.phase-copy p,[\s\S]*?transform:\s*translateZ\(0\)/);
+  assert.match(css, /\.faq summary\s*\{[^}]*display:\s*list-item/);
+  assert.doesNotMatch(css, /\.faq summary\s*\{[^}]*display:\s*flex/);
+  assert.match(css, /:focus-visible\s*\{[^}]*outline:\s*3px solid var\(--paper\)/);
+  assert.match(css, /:focus-visible\s*\{[^}]*box-shadow:\s*0 0 0 3px var\(--navy\)/);
+  assert.match(css, /\.site-header\.is-hidden\s*\{[^}]*translateY\(-110%\)/);
 });
 
 test("visible copy has no digits beyond verified facts and phase labels", () => {

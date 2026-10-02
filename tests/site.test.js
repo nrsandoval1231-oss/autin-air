@@ -84,6 +84,58 @@ test("header turns solid after a short scroll", () => {
   assert.equal(header.classList.contains("is-solid"), false);
 });
 
+test("header hides while scrolling down and returns while scrolling up", () => {
+  const header = { classList: classList(), contains() { return false; } };
+  const listeners = {};
+  const win = {
+    scrollY: 0,
+    addEventListener(type, fn) { listeners[type] = fn; },
+  };
+  const doc = {
+    activeElement: null,
+    body: { classList: classList() },
+    addEventListener() {},
+  };
+  bindHeader(header, win, doc);
+  win.scrollY = 200;
+  listeners.scroll();
+  assert.equal(header.classList.contains("is-hidden"), true);
+  assert.equal(header.classList.contains("is-solid"), true);
+  win.scrollY = 120;
+  listeners.scroll();
+  assert.equal(header.classList.contains("is-hidden"), false);
+});
+
+test("header stays shown for reduced motion, focus inside, and an open menu", () => {
+  const header = { classList: classList(), contains() { return false; } };
+  const listeners = {};
+  const reduce = { matches: true, addEventListener() {} };
+  const win = {
+    scrollY: 0,
+    matchMedia() { return reduce; },
+    addEventListener(type, fn) { listeners[type] = fn; },
+  };
+  const doc = {
+    activeElement: null,
+    body: { classList: classList() },
+    addEventListener() {},
+  };
+  bindHeader(header, win, doc);
+  win.scrollY = 300;
+  listeners.scroll();
+  assert.equal(header.classList.contains("is-hidden"), false);
+  reduce.matches = false;
+  header.contains = () => true;
+  win.scrollY = 480;
+  listeners.scroll();
+  assert.equal(header.classList.contains("is-hidden"), false);
+  header.contains = () => false;
+  doc.body.classList.add("nav-open");
+  win.scrollY = 700;
+  listeners.scroll();
+  assert.equal(header.classList.contains("is-hidden"), false);
+});
+
 test("mobile menu opens, traps tab, closes on escape, and closes from a link", () => {
   const toggle = {
     attrs: { "aria-expanded": "false" },

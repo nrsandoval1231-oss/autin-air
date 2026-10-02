@@ -49,9 +49,12 @@ button, input, textarea { font: inherit; font-weight: 400; }
 ::selection { background: var(--red); color: var(--paper); }
 
 :focus { outline: none; }
+/* Navy and paper sit on opposite sides of every surface here, so one band
+   of the ring always clears 3:1 against the color underneath. */
 :focus-visible {
-  outline: 2px solid var(--red);
-  outline-offset: 4px;
+  outline: 3px solid var(--paper);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px var(--navy);
 }
 
 .skip-link {
@@ -73,7 +76,7 @@ button, input, textarea { font: inherit; font-weight: 400; }
 }
 
 #main:focus,
-#main:focus-visible { outline: none; }
+#main:focus-visible { outline: none; box-shadow: none; }
 
 [id] { scroll-margin-top: calc(var(--header-h) + 0.75rem); }
 
@@ -88,8 +91,9 @@ button, input, textarea { font: inherit; font-weight: 400; }
   padding: 0.7rem clamp(1rem, 3vw, 2.25rem);
   background: transparent;
   border-bottom: 1px solid transparent;
-  transition: border-color 400ms var(--ease);
+  transition: transform 420ms var(--ease), border-color 400ms var(--ease);
 }
+.site-header.is-hidden { transform: translateY(-110%); }
 .site-header.is-solid,
 body.nav-open .site-header {
   background: var(--paper);
@@ -418,7 +422,8 @@ body.nav-open .site-header .site-nav a { color: var(--navy); }
 
 .process {
   padding: clamp(4.5rem, 12vh, 8.5rem) clamp(1.1rem, 5vw, 5.5rem);
-  background: var(--paper);
+  background: var(--signal);
+  color: var(--navy);
 }
 .process h2 {
   max-width: 12em;
@@ -443,7 +448,7 @@ body.nav-open .site-header .site-nav a { color: var(--navy); }
   top: 0.4rem;
   left: 0;
   right: 0;
-  height: 1px;
+  height: 3px;
   background: var(--navy);
   transform: scaleX(1);
   transform-origin: left;
@@ -457,17 +462,17 @@ html.motion .timeline.is-in::before {
 .timeline li::before {
   content: "";
   position: absolute;
-  top: -1.35rem;
+  top: -1.45rem;
   left: 0;
-  width: 7px;
-  height: 7px;
-  border: 1px solid var(--navy);
-  background: var(--paper);
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--navy);
+  background: var(--navy);
 }
 .step-num {
   display: block;
   margin-bottom: 0.85rem;
-  color: var(--red);
+  color: var(--navy);
   font-size: 0.875rem;
   letter-spacing: 0.14em;
 }
@@ -481,7 +486,7 @@ html.motion .timeline.is-in::before {
 }
 .timeline p {
   max-width: 32ch;
-  color: var(--steel);
+  color: var(--navy);
   line-height: 1.65;
 }
 
@@ -597,6 +602,37 @@ html.motion .territory.is-in .axis-line {
   font-size: 0.875rem;
   line-height: 1.6;
 }
+.photo-credit {
+  margin: 0.85rem 0 0;
+  font-size: 0.875rem;
+  letter-spacing: 0.03em;
+}
+.photo-credit a {
+  color: var(--sand);
+  text-decoration-color: var(--amber);
+  text-underline-offset: 0.22em;
+}
+
+.credits-page {
+  min-height: 100vh;
+  padding: clamp(4.5rem, 12vh, 7rem) clamp(1.1rem, 5vw, 5.5rem) 4rem;
+  background: var(--paper);
+  color: var(--navy);
+}
+.credits-page h1 {
+  max-width: 10em;
+  font-size: clamp(3rem, 8vw, 6.2rem);
+}
+.credits-page p,
+.credits-page li {
+  max-width: 64ch;
+  margin-top: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+.credits-page ul { margin: 1.4rem 0 0; padding: 0; list-style: none; }
+.credits-page li { padding-top: 0.85rem; border-top: 1px solid rgba(12, 16, 32, 0.16); }
+.credits-page a { text-decoration-color: var(--amber); text-underline-offset: 0.16em; }
 
 .marquee {
   position: relative;
@@ -604,28 +640,28 @@ html.motion .territory.is-in .axis-line {
   overflow: hidden;
   background: var(--signal);
   color: var(--navy);
+  border-bottom: 0.55rem solid var(--navy);
 }
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: ticker 28s linear infinite;
+  animation: ticker 22s linear infinite;
 }
 .marquee p {
   margin: 0;
-  padding: 0.42rem 0;
+  padding: 0.06em 0 0.02em;
   font-family: var(--display);
-  font-size: clamp(2.15rem, 5.2vw, 4.4rem);
-  letter-spacing: -0.03em;
-  line-height: 1;
+  font-size: clamp(3.4rem, 9.2vw, 8.4rem);
+  letter-spacing: -0.04em;
+  line-height: 0.86;
   text-transform: uppercase;
   white-space: nowrap;
 }
 .marquee span {
   display: inline-block;
-  margin: 0 0.28em;
-  padding: 0 0.22em 0.04em;
-  background: var(--paper);
-  color: var(--navy);
+  margin: 0 0.16em;
+  color: transparent;
+  -webkit-text-stroke: 0.028em var(--navy);
 }
 
 .stamp {
@@ -688,90 +724,88 @@ html.motion .territory.is-in .axis-line {
 }
 
 .phases {
-  padding: clamp(4rem, 10vh, 7rem) clamp(1.1rem, 5vw, 5.5rem) clamp(3rem, 8vh, 5rem);
+  padding: clamp(4rem, 10vh, 7rem) 0 0;
   background: var(--navy);
   color: var(--paper);
 }
-.phases-intro { max-width: 18em; }
+.phases-intro {
+  max-width: 16em;
+  padding: 0 clamp(1.1rem, 5vw, 5.5rem) clamp(1.6rem, 4vh, 2.4rem);
+}
 .phases-intro p:last-child {
-  max-width: 36ch;
+  max-width: 34ch;
   margin-top: 1.2rem;
-  color: var(--mist);
+  color: var(--sand);
   font-size: 1.05rem;
   line-height: 1.6;
 }
 .phases h2 { font-size: clamp(3.1rem, 8.4vw, 7.2rem); }
 .phase-list {
-  margin: clamp(2rem, 5vh, 3rem) 0 0;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
-.phase-list article {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1.05fr) minmax(18rem, 0.9fr);
-  grid-template-areas: "num copy photo";
-  gap: clamp(1rem, 3vw, 2.4rem);
-  align-items: center;
-  padding: clamp(1.6rem, 4vh, 2.6rem) 0;
-  border-top: 1px solid rgba(243, 239, 230, 0.2);
+.phase-list article { display: block; }
+.phase-list figure { margin: 0; }
+.phase-list img {
+  display: block;
+  width: 100%;
+  height: clamp(18rem, 62vw, 46rem);
+  object-fit: cover;
 }
-.phase-list li:nth-child(even) article {
-  grid-template-columns: minmax(18rem, 0.9fr) auto minmax(0, 1.05fr);
-  grid-template-areas: "photo num copy";
-}
-.phase-num {
+.phase-list li:first-child img { object-position: center 45%; }
+.phase-list li:nth-child(3) img { object-position: center 40%; }
+.phase-list li:nth-child(4) img { object-position: center 55%; }
+.phase-band {
   display: grid;
-  place-items: center;
-  grid-area: num;
-  width: clamp(5.2rem, 11vw, 8rem);
-  height: clamp(5.2rem, 11vw, 8rem);
-  margin: 0;
-  background: var(--signal);
+  grid-template-columns: auto minmax(0, 40rem);
+  gap: clamp(0.6rem, 3vw, 2.4rem);
+  align-items: end;
+  padding: clamp(0.8rem, 2.4vh, 1.4rem) clamp(1.1rem, 5vw, 5.5rem) clamp(1.5rem, 4vh, 2.6rem);
+  background: var(--sand);
   color: var(--navy);
+}
+.phase-list li:nth-child(2) .phase-band { background: var(--amber); }
+.phase-list li:nth-child(3) .phase-band { background: var(--navy); color: var(--paper); }
+.phase-list li:nth-child(4) .phase-band { background: var(--signal); color: var(--navy); }
+.phase-num {
+  margin: 0;
   font-family: var(--display);
-  font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+  font-size: clamp(5.4rem, 14vw, 11.5rem);
   font-weight: 400;
-  line-height: 1;
+  letter-spacing: -0.05em;
+  line-height: 0.78;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--navy);
 }
-.phase-list li:nth-child(2) .phase-num { background: var(--sand); }
-.phase-list li:nth-child(3) .phase-num { background: var(--amber); }
-.phase-list li:nth-child(4) .phase-num { background: var(--paper); }
-.phase-copy { grid-area: copy; }
-.phase-copy h3 { font-size: clamp(2.4rem, 4vw, 3.8rem); }
+.phase-list li:nth-child(3) .phase-num { -webkit-text-stroke-color: var(--sand); }
+.phase-copy h3 { font-size: clamp(2.6rem, 4.4vw, 4.2rem); }
 .phase-copy p {
-  max-width: 38ch;
-  margin-top: 0.75rem;
-  color: var(--paper);
+  max-width: 36ch;
+  margin-top: 0.55rem;
+  color: inherit;
   font-size: 1.05rem;
-  line-height: 1.6;
+  line-height: 1.55;
 }
+.phase-list li:nth-child(3) .phase-copy p { color: var(--paper); }
 /* Small type on navy picks up amber and blue from LCD subpixel fringes. */
 .phases-intro p,
 .phase-copy p,
-.phase-list figcaption,
-.phase-note {
+.spine-grid li:first-child p,
+.why-list li:nth-child(3) p,
+.contact-quiet,
+.photo-credit,
+.lede {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transform: translateZ(0);
 }
-.phase-list figure { grid-area: photo; margin: 0; }
-.phase-list img,
 .get-photo img {
   display: block;
   width: 100%;
-  height: clamp(13rem, 28vw, 20rem);
+  height: clamp(16rem, 42vw, 32rem);
   object-fit: cover;
 }
-.phase-list li:first-child img { object-position: center 42%; }
-.phase-list figcaption,
-.get figcaption,
-.phase-note {
-  margin-top: 0.5rem;
-  color: var(--mist);
-  font-size: 0.875rem;
-  line-height: 1.45;
-}
-.phase-note { max-width: 46ch; margin-top: 1.5rem; }
 
 .cta-band {
   display: flex;
@@ -833,7 +867,13 @@ html.motion .territory.is-in .axis-line {
   padding: 0;
   list-style: none;
 }
-.why-list li { padding-top: 0.9rem; border-top: 3px solid var(--navy); }
+.why-list li {
+  padding: 1.15rem 1.15rem 1.45rem;
+  background: var(--paper);
+  border-top: 8px solid var(--navy);
+}
+.why-list li:nth-child(2) { background: var(--amber); }
+.why-list li:nth-child(3) { background: var(--navy); color: var(--paper); }
 .why-list h3 { font-size: clamp(1.7rem, 2.4vw, 2.35rem); }
 .why-list p {
   margin-top: 0.7rem;
@@ -887,12 +927,10 @@ html.motion .territory.is-in .axis-line {
 .faq-list { margin-top: clamp(1.5rem, 4vh, 2.5rem); border-top: 2px solid var(--navy); }
 .faq details { border-bottom: 1px solid rgba(12, 16, 32, 0.16); }
 .faq summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  display: list-item;
+  position: relative;
   min-height: 4.25rem;
-  padding: 0.85rem 0;
+  padding: 1rem 3.2rem 1rem 0;
   font-family: var(--display);
   font-size: clamp(1.45rem, 3vw, 2.25rem);
   font-weight: 400;
@@ -901,17 +939,20 @@ html.motion .territory.is-in .axis-line {
   cursor: pointer;
   list-style: none;
 }
+.faq summary::marker { content: ""; }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary::after {
   content: "+";
-  flex: none;
-  color: var(--signal);
+  position: absolute;
+  top: 0.85rem;
+  right: 0.1rem;
+  color: var(--navy);
   font-family: var(--display);
   font-size: 2rem;
   line-height: 1;
 }
 .faq details[open] { background: var(--sand); }
-.faq details[open] summary { padding-right: 0.2rem; padding-left: 0.85rem; }
+.faq details[open] summary { padding-right: 3.2rem; padding-left: 0.85rem; }
 .faq details[open] summary::after { content: "–"; }
 .faq details p {
   max-width: 62ch;
@@ -947,16 +988,10 @@ html.motion .territory.is-in .axis-line {
   .spine-grid,
   .why-list { grid-template-columns: 1fr; }
   .spine-grid li { min-height: 0; }
-  .phase-list article,
-  .phase-list li:nth-child(even) article {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "num"
-      "copy"
-      "photo";
-  }
-  .phase-list img,
-  .get-photo img { height: 16rem; }
+  .phase-band { grid-template-columns: 1fr; gap: 0.2rem; }
+  .phase-num { font-size: clamp(4.4rem, 24vw, 7rem); }
+  .phase-list img { height: clamp(16rem, 78vw, 24rem); }
+  .get-photo img { height: 18rem; }
   .get {
     grid-template-columns: 1fr;
     align-items: start;
@@ -1158,6 +1193,8 @@ html.motion .territory.is-in .axis-line {
     transform: none !important;
   }
   .hero-copy { opacity: 1 !important; }
+  .site-header,
+  .site-header.is-hidden { transform: none !important; }
   .marquee-track {
     animation: none !important;
     transform: none !important;
