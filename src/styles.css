@@ -105,8 +105,10 @@ body.nav-open .site-header {
   line-height: 0;
   min-width: 0;
   padding: 0.38rem 0.55rem 0.32rem;
-  background: var(--paper);
+  background: transparent;
 }
+.logo-swap { position: relative; display: block; }
+.brand picture { display: block; }
 .brand img {
   display: block;
   width: auto;
@@ -114,6 +116,22 @@ body.nav-open .site-header {
   max-width: min(280px, 34vw);
   max-height: 48px;
 }
+.logo-for-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+}
+.logo-for-bar img {
+  width: 100%;
+  max-width: none;
+  height: auto;
+}
+.site-header.is-solid .logo-for-hero,
+body.nav-open .site-header .logo-for-hero { opacity: 0; }
+.site-header.is-solid .logo-for-bar,
+body.nav-open .site-header .logo-for-bar { opacity: 1; }
 .header-call,
 .nav-toggle { display: none; }
 
